@@ -1,0 +1,162 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "citas": [
+    {
+      "id": "01",
+      "doc": "7579123622",
+      "dateCheck": true,
+      "advancement": "100",
+      "balance": "200",
+      "obs": "test1",
+      "date": "01-01-2023",
+      "hour": "09:00"
+    },
+    {
+      "id": "02",
+      "doc": "19283692",
+      "dateCheck": true,
+      "advancement": "130",
+      "balance": "230",
+      "obs": "test2",
+      "date": "01-01-2023",
+      "hour": "09:30"
+    },
+    {
+      "id": "03",
+      "doc": "97222211",
+      "dateCheck": true,
+      "advancement": "200",
+      "balance": "240",
+      "obs": "test3",
+      "date": "01-01-2023",
+      "hour": "10:30"
+    },
+    {
+      "id": "05",
+      "doc": "23411222",
+      "dateCheck": true,
+      "advancement": "130",
+      "balance": "230",
+      "obs": "test2",
+      "date": "11-01-2023",
+      "hour": "12:30"
+    },
+    {
+      "id": "06",
+      "doc": "97222211",
+      "dateCheck": true,
+      "advancement": "200",
+      "balance": "240",
+      "obs": "test3",
+      "date": "11-01-2023",
+      "hour": "13:30"
+    },
+    {
+      "id": "08",
+      "doc": "75791236",
+      "dateCheck": true,
+      "advancement": "110",
+      "balance": "290",
+      "obs": "dia2",
+      "date": "21-01-2023",
+      "hour": "11:00"
+    },
+    {
+      "id": "09",
+      "doc": "66622323",
+      "dateCheck": true,
+      "advancement": "130",
+      "balance": "230",
+      "obs": "test2",
+      "date": "21-01-2023",
+      "hour": "12:30"
+    },
+    {
+      "id": "10",
+      "doc": "23412333",
+      "dateCheck": true,
+      "advancement": "200",
+      "balance": "240",
+      "obs": "test3",
+      "date": "21-01-2023",
+      "hour": "13:30"
+    },
+    {
+      "doc": "75791236",
+      "advancement": "100",
+      "balance": "130",
+      "obs": "test2",
+      "date": "19-01-2023",
+      "hour": "21:08",
+      "id": "4FituOH",
+      "dateCheck": true
+    },
+    {
+      "doc": "75791236",
+      "advancement": "100",
+      "balance": "200",
+      "obs": "test",
+      "date": "19-01-2023",
+      "hour": "22:01",
+      "id": "dq9IBue"
+    }
+  ],
+  "personas": [
+    {
+      "nroDoc": "75791236",
+      "nombre": "Bryan Hurtado Alvarado",
+      "id": 1,
+      "nacimiento":"16-12-1996",
+      "sexo":"M",
+      "dirCod":1,
+      "carnet":"6",
+      "telefono":"935756219",
+      "email":"brayan.ha.1996@gmail.com"
+    },
+    {
+      "id": 2,
+      "nroDoc": "23451672",
+      "nombre": "Enrique Iglesias",
+      "nacimiento":"08-05-1975",
+      "sexo":"M",
+      "carnet":"2",
+      "telefono":"123456789",
+      "email":"enrique.iglesias.1975@gmail.com"
+    },
+    {
+      "id": 3,
+      "nroDoc": "92731832",
+      "nombre": "Lionel Messi",
+      "nacimiento":"24-12-1987",
+      "sexo":"M",
+      "carnet":"10",
+      "telefono":"987654321",
+      "email":"lionel.messi.1987@gmail.com"
+    }
+  ],
+  "direcciones":[
+    {
+      "id":1,
+      "dpto":"Lima",
+      "prov":"Lima",
+      "dist":"Villa el salvador",
+      "dir":"Av.revolucion 135"
+    }
+  ]
+}
