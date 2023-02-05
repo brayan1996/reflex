@@ -72,6 +72,8 @@ const TopNamedInput = (props) => {
               min={props.min}
               accept={props.accept}
               onFocus={props.onFocus}
+              name={props.name}
+              step={props.step}
             />
           
         </div>

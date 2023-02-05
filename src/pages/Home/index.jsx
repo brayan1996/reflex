@@ -1,14 +1,20 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-
+import { useDispatch } from "react-redux"
 // import AppFooter from './Menu/AppFooter';
 import AppMenu from './Menu/AppMenu';
 import AppTopbar from './Menu/AppTopbar';
 import { CSSTransition } from 'react-transition-group';
+import { useState, useEffect } from 'react';
+import { getAllDiseases } from '../../store/slices/enfermedades';
 import './styles.scss';
-import { useState } from 'react';
+
 export default function Home() {
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch( getAllDiseases() )
+  }, [])
   return (
     <div>
       <AppTopbar />

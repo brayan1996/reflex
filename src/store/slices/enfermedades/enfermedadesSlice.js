@@ -1,17 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { enfermedadesData } from '../../../dataFalsa/enfermedades';
 export const enfermedadesSlice = createSlice({
     name: 'enfermedades',
     initialState: {
-        enfermedadesData: enfermedadesData
+        diseasesAllData: [],
+        isLoadingDiseases:false,
+        selectedDiseases:{}
     },
     reducers: {
-        increment: (state, /* action */ ) => {
-            state.counter += 1;
+        loadingDiseases:(state)=>{
+            state.isLoadingDiseases = true
         },
+        endLoadingDiseases:(state)=>{
+            state.isLoadingDiseases = false
+        },
+        setAllDiseases:(state, action) =>{
+            state.diseasesAllData = action.payload
+            state.isLoadingDiseases = false
+        },
+        setDiseasesSelected: (state, action) => {
+            state.selectedDiseases = action.payload
+        }
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { increment } =  enfermedadesSlice.actions;
+export const { loadingDiseases, endLoadingDiseases, setAllDiseases, setDiseasesSelected } =  enfermedadesSlice.actions;

@@ -19,7 +19,6 @@
   border-bottom: 2px solid var(--gray);
   outline: 0;
   font-size: 1.3rem;
-  color: var(--white);
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
@@ -42,7 +41,6 @@
   transition: 0.2s;
   font-size: 1rem;
   font-weight: 700;
-  color: var(--gray);
 }
 
 .form__field:focus ~ .form__label {

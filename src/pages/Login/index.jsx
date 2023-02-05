@@ -4,7 +4,6 @@ import imageReflex from './reflex.png'
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
-import { Image } from 'primereact/image';
 import './Login.scss';
 export default function Login() {
   const [login, setLogin] = useState({

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react"
 
-export const useField = ({type = 'text',defaultValue=''}) => {
+export const useField = ({type = 'text',defaultValue='', keySelect='code'}) => {
     const [value, setValue] = useState('')
+    const onChange = (data) => setValue(data)
+    const onSelect = (data) => setValue(data[keySelect])
 
-    const onChange = (data) => {
-        setValue(data)
-    }
     useEffect(() => {
         setValue(defaultValue)
     }, [defaultValue])
@@ -13,6 +12,7 @@ export const useField = ({type = 'text',defaultValue=''}) => {
   return {
     type,
     value,
-    onChange
+    onChange,
+    onSelect
   }
 }

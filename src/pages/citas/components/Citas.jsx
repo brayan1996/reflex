@@ -6,10 +6,11 @@ import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from 'primereact/toast';
 import { requestDates, modifyDate, changeStateCitas, deleteDate } from "../../../store/slices/citas";
-import { updateOnePerson, createPerson } from "../../../store/slices/personas";
+import { setHistoryPersonSelected } from "../../../store/slices/reactivos/reactivosSlice";
+import { getHistorial } from "../../../store/slices/historial";
 import { Tablex } from "../../../components/tablex/Tablex";
 import { PersonModal } from "../components/PersonModal";
-import Personas from "../../../apis/Personas";
+import FormPersonaModal from "./FormPersonaModal";
 
 const columnConfig = [
     {
@@ -29,7 +30,7 @@ const columnConfig = [
     {
       key: "cliente",
       name: "Cliente",
-      editComponent:"editInput"
+      editComponent:"modalInput"
     },
     {
       key: "dateCheck",
@@ -59,25 +60,19 @@ const columnConfig = [
     {
       name: "Elimnar",
       customComponent: "tableButtonDelete"
+    },
+    {
+      name: "Ticket",
+      customComponent: "ticketComponent"
     }
   ]
 
 export const Citas = ({value}) => {
-    // const { value, getNormalDate } = useCalendar()
     const [nroDoc, setNroDoc] = useState()
     const { citasData, isLoading } = useSelector( state=> state.citas )
     const dispatch = useDispatch(); 
     const toast = useRef(null);
 
-    const getNamePerson = async(nrDoc, options) => {
-      const nombre = (await Personas.getPersonByDocument(nrDoc))?.data.shift()?.nombre || ''
-      options.editorCallback(nombre)
-      if(!nombre) toast.current.show({
-        severity: 'warn',
-        detail: 'El cliente no existe, en caso de que escriba un nombre se guardará un nuevo cliente al confirmar la edición ',
-        life: 5000,
-      });
-    }
     
     const confirm1 = (data) => {
       confirmDialog({
@@ -88,17 +83,8 @@ export const Citas = ({value}) => {
       });
     };
     
-    const updateData = async( newData, oldData ) => {
+    const updateData = async( newData ) => {
       dispatch( modifyDate(newData) )
-      if((oldData.doc !== newData.doc || oldData.cliente !== newData.cliente) && newData.cliente !== ''){
-        const person = (await Personas.getPersonByDocument(newData.doc))?.data?.shift()
-        let newPerson = { nroDoc:newData.doc, nombre:newData.cliente }
-        if(person){
-          newPerson.id = person.id
-          dispatch( updateOnePerson( newPerson.id ,newPerson) )
-        }
-        else dispatch( createPerson(newPerson) ) 
-      }
     }
 
     const dateCheckComponent = ( row ) => {
@@ -134,6 +120,14 @@ export const Citas = ({value}) => {
         />
       )
     }
+    const modalInput = (options) => {
+      return(
+        <FormPersonaModal
+          options={options}
+          nroDoc={nroDoc}
+        />
+      )
+    }
 
     const editInput = (options) => {
       return (
@@ -144,12 +138,23 @@ export const Citas = ({value}) => {
           onBlur={(e)=>{
             if(options.field === 'doc') setNroDoc(e.target.value)
           }}
-          onFocus={()=>{
-            if(options.field === 'cliente') getNamePerson(nroDoc, options)
-          }}
           
         />
       )
+    }
+
+    const ticketComponent = (rowData) => {
+      return(
+        <Button
+          icon='pi pi-file-pdf'
+          className="p-button-rounded p-button-text"
+          onClick={()=>console.log(rowData)}
+        />
+      )
+    }
+    const select = (selected) => {
+      dispatch( setHistoryPersonSelected(selected) )
+      dispatch( getHistorial({nroDoc:selected.doc, name:selected.cliente}) )
     }
 
     useEffect(() => {
@@ -161,7 +166,6 @@ export const Citas = ({value}) => {
         <Toast ref={toast} position="bottom-right"/>
         <ConfirmDialog />
         <div className="w-4/12 mx-auto mb-10">
-            
           </div> 
           <Tablex
             tableConfig={columnConfig}
@@ -169,11 +173,14 @@ export const Citas = ({value}) => {
             dateCheckComponent={dateCheckComponent}
             personModal={personModal}
             editInput={editInput}
+            modalInput={modalInput}
+            ticketComponent={ticketComponent}
             rowEditable
             loading={isLoading}
             updateData={updateData}
             changeState={changeStateCitas}
             tableButtonDelete={tableButtonDelete}
+            selectionRow={select}
           />
       </div>
     );

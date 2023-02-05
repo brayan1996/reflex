@@ -19,7 +19,7 @@
   "citas": [
     {
       "id": "01",
-      "doc": "7579123622",
+      "doc": "75791236",
       "dateCheck": true,
       "advancement": "100",
       "balance": "200",
@@ -29,13 +29,14 @@
     },
     {
       "id": "02",
-      "doc": "19283692",
+      "doc": "927318",
       "dateCheck": true,
       "advancement": "130",
       "balance": "230",
       "obs": "test2",
       "date": "01-01-2023",
-      "hour": "09:30"
+      "hour": "09:30",
+      "terapeuta": "Gonzalo"
     },
     {
       "id": "03",
@@ -121,42 +122,126 @@
     {
       "nroDoc": "75791236",
       "nombre": "Bryan Hurtado Alvarado",
-      "id": 1,
-      "nacimiento":"16-12-1996",
-      "sexo":"M",
-      "dirCod":1,
-      "carnet":"6",
-      "telefono":"935756219",
-      "email":"brayan.ha.1996@gmail.com"
+      "id": 1
     },
     {
       "id": 2,
       "nroDoc": "23451672",
       "nombre": "Enrique Iglesias",
-      "nacimiento":"08-05-1975",
-      "sexo":"M",
-      "carnet":"2",
-      "telefono":"123456789",
-      "email":"enrique.iglesias.1975@gmail.com"
+      "nacimiento": "08-05-1975",
+      "sexo": "M",
+      "carnet": "2",
+      "telefono": "123456789",
+      "email": "enrique.iglesias.1975@gmail.com"
+    },
+    {
+      "nroDoc": "92731832",
+      "nombre": "Lionel Messi",
+      "id": 3
+    },
+    {
+      "nroDoc": "927318",
+      "nombre": "Juanito Alimaña",
+      "nacimiento": "1960-04-12",
+      "sexo": "M",
+      "carnet": "",
+      "telefono": "",
+      "email": "",
+      "id": 4
+    }
+  ],
+  "direcciones": [
+    {
+      "id": 1,
+      "dpto": "Lima",
+      "prov": "Lima",
+      "dist": "Villa el salvador",
+      "dir": "Av.revolucion 135",
+      "docPersona": "75791236"
+    },
+    {
+      "dpto": "15",
+      "prov": "01",
+      "dist": "03",
+      "dir": "las fresias",
+      "docPersona": "927318",
+      "id": 2
+    },
+    {
+      "dpto": "10",
+      "prov": "01",
+      "dist": "02",
+      "dir": "ddd",
+      "docPersona": "97222211",
+      "id": 3
+    }
+  ],
+  "historial": [
+    {
+      "nroDoc": "927318",
+      "menstruation": true,
+      "gestation": true,
+      "testimony": true,
+      "ailments": "todo",
+      "code": "927318",
+      "name": "Juanito Alimaña",
+      "therapist": "Carlos Lujan",
+      "diagExt": "disagext",
+      "medicines": "panadol",
+      "contraceptives": "pstilla",
+      "operation": "cirugia",
+      "observation": "test1",
+      "diagReflex": "ninguna",
+      "startingWeight": "56.2",
+      "finalWeight": "",
+      "startDate": "2023-01-11",
+      "finalDate": "2023-01-17",
+      "size": "1.62",
+      "diagnosis1": "",
+      "diagnosis2": "",
+      "diagnosis3": "",
+      "diagnosis4": "",
+      "diagnosis5": "",
+      "diagnosis6": "",
+      "bsPriv": "test2",
+      "result": "",
+      "obsGenerales": "",
+      "id": 1
+    }
+  ],
+  "enfermedades": [
+    {
+      "code": "A0192",
+      "name": "Fiebre tifoidea",
+      "type": "",
+      "id": 1
+    },
+    {
+      "code": "A099",
+      "name": "Diarrea y gastroenteritis",
+      "type": "",
+      "id": 2
     },
     {
       "id": 3,
-      "nroDoc": "92731832",
-      "nombre": "Lionel Messi",
-      "nacimiento":"24-12-1987",
-      "sexo":"M",
-      "carnet":"10",
-      "telefono":"987654321",
-      "email":"lionel.messi.1987@gmail.com"
-    }
-  ],
-  "direcciones":[
+      "code": "B829",
+      "name": "Parásitos Intestinales"
+    },
     {
-      "id":1,
-      "dpto":"Lima",
-      "prov":"Lima",
-      "dist":"Villa el salvador",
-      "dir":"Av.revolucion 135"
+      "code": "C159",
+      "name": "Tumor maligno de esófago",
+      "type": "",
+      "id": 4
+    },
+    {
+      "id": 5,
+      "code": "C129",
+      "name": "Tumor maligno de estómago"
+    },
+    {
+      "id": 6,
+      "code": "C229",
+      "name": "Tumor de hígado"
     }
   ]
 }

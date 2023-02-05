@@ -28,4 +28,5 @@ export const deleteDate = (body) => async( dispatch ) =>{
 
 export const createDate = (body) => async()=>{
     await Citas.createAppointment(body)
+    dispatch( requestDates(body.date) )
 }

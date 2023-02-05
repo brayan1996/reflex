@@ -69,6 +69,13 @@ export const Tablex = (props) => {
                     rowEditor={props.rowEditable ? column.rowEditor : false}
                     body={componentBody}
                     editor={componentEdit}
+                    style={{
+                      width: column.width,
+                      padding: `${props.verticalPadding ?? 12}px 5px`,
+                      paddingLeft: i === 0 ? "20px" : "5px",
+                      //ocultar todo el column sugun se requiera
+                      display: column.hidden ? "none" : "table-cell",
+                    }}
               />
             )
         })
@@ -102,6 +109,8 @@ export const Tablex = (props) => {
             onSelectionChange={e => props.selectionRow(e.value)}
             editMode={props.rowEditable ? "row" : undefined}
             onRowEditComplete={props.rowEditable ? onRowEditComplete1 : undefined}
+            scrollable={props.scrollable}
+            scrollHeight={props.heightScroll}
           >
             {columnFactory()}
           </DataTable>

@@ -1,42 +1,61 @@
 
-import { useField } from "../../../hooks/useField"
-import TopNamedInput from "../../../components/inputs/TopNamedInput/TopNamedInput"
-import { Button } from "primereact/button";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { createDirectionPersonal } from "../../../store/slices/direcciones/thunks";
+import { createPerson } from "../../../store/slices/personas";
+import useFieldFormPerson from "../../../hooks/useFieldFormPerson";
+import TopNamedInput from "../../../components/inputs/TopNamedInput/TopNamedInput"
+import TopNamedCombobox from "../../../components/inputs/TopNamedCombobox/TopNamedCombobox";
+import CheckedComponent from "../../../components/inputs/checkedComponent/CheckedComponent";
+import { gender } from "../../../helpers/conbobox";
+import { departamentos } from "../../../dataFalsa/departamentos";
+import { ocupaciones } from "../../../dataFalsa/ocupaciones";
+import SaveAndCancelButtons from "../../../components/buttonsGeneral/SaveAndCancelButtons";
 
-export const FormPersona = () => {
-    const [personaData, setPersonaData] = useState({})
-    const [direccionData, setDireccionData] = useState({})
-    const nroDoc = useField({type:'text'})
-    const nombre = useField({type:'text'})
-    const fechNac = useField({type:'text'})
-    const sexo = useField({type:'text'})
-    const dir = useField({type:'text'})
-    const dep = useField({type:'text'})
-    const prov = useField({type:'text'})
-    const dis = useField({type:'text'})
-    const carnet = useField({type:'text'})
-    const telef = useField({type:'text'})
-    const email = useField({type:'text'})
-    useEffect(() => {
-        setPersonaData({
-            nroDoc:nroDoc.value,
-            nombre:nombre.value,
-            nacimiento:fechNac.value,
-            sexo:sexo.value,
-            carnet:carnet.value,
-            telefono:telef.value,
-            email:email.value
-        })
-    }, [nombre, fechNac, sexo, carnet, telef, email])
+export const FormPersona = ({nroDoc:numeroDocumento, closeModal}) => {
+    const {  
+            personaData,
+            provinciasData,
+            distritosData,
+            direccionData,
+            nroDoc,
+            nombre,
+            fechNac,
+            sexo,
+            dir,
+            dep,
+            prov,
+            dis,
+            resultado,
+            telef,
+            email,
+            ocupacion,
+            testimonio,
+            observacion,
+            especial 
+        } = useFieldFormPerson({numeroDocumento})
+    const { loadingPersons } = useSelector( state => state.personas )
+    const dispatch = useDispatch(); 
+    const savePerson = () =>{
+        dispatch(createPerson(personaData))
+        dispatch( createDirectionPersonal(direccionData) )
+        closeModal()
+    }
+
+    const cancelSave = () =>{
+        closeModal()
+    }
+    
+    
     
   return (
     <div className="w-full form1">
         <p className="title">Formulario persona</p>
-        <div className='mt-10 mx-auto grid grid-cols-3 gap-4'>
+        <div className='w-10/12 mt-10 mx-auto grid grid-cols-3 gap-4'>
             <TopNamedInput
                 {...nroDoc}
-                label='Nro Doc'
+                label='DNI/CE'
+                disabled
             />
             <TopNamedInput
                 {...nombre}
@@ -46,29 +65,41 @@ export const FormPersona = () => {
                 {...fechNac}
                 label='Fecha Nacimiento'
             /> 
-            <TopNamedInput
+            <TopNamedCombobox
                 {...sexo}
                 label='Sexo'
+                data={gender()}
+                dataKey="code"
+                textField="name"
             />    
             <TopNamedInput
                 {...dir}
                 label='Dirección'
             /> 
-            <TopNamedInput
+            <TopNamedCombobox
                 {...dep}
                 label='Departamento'
+                data={departamentos}
+                dataKey="dptoCode"
+                textField="nombre"
             />    
-            <TopNamedInput
+            <TopNamedCombobox
                 {...prov}
                 label='Provincia'
+                data={provinciasData}
+                dataKey="provCode"
+                textField="nombre"
             /> 
-            <TopNamedInput
+            <TopNamedCombobox
                 {...dis}
                 label='Distrito'
+                data={distritosData}
+                dataKey="distCode"
+                textField="nombre"
             />    
             <TopNamedInput
-                {...carnet}
-                label='Carnet'
+                {...resultado}
+                label='Resultado'
             />
             <TopNamedInput
                 {...telef}
@@ -78,19 +109,34 @@ export const FormPersona = () => {
                 {...email}
                 label='Email'
             /> 
-        </div>
-        <div className="grid grid-cols-2 gap-4 w-1/2 mx-auto">
-            <Button
-                label="Cancelar"
-                className="p-button-outlined p-button-danger"
-                icon="pi pi-times"
+            <TopNamedInput
+                {...observacion}
+                label='Observacion'
             />
-            <Button
-                label="Guardar"
-                className="p-button-outlined"
-                icon="pi pi-check"
+            <CheckedComponent
+                {...especial}
+                label='Especial'
             />
+            <TopNamedCombobox
+                {...testimonio}
+                label='Testimonio'
+                data={[{code:'f', name:'F'}]}
+                dataKey="code"
+                textField="name"
+            />  
+            <TopNamedCombobox
+               {...ocupacion}
+               label='Ocupación'
+               data={ocupaciones}
+               dataKey="code"
+               textField="name"
+            /> 
         </div>
+        <SaveAndCancelButtons
+            handleSave={savePerson}
+            handleCancel={cancelSave}
+            loadingSave={loadingPersons}
+        />
     </div>
   )
 }

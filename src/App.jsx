@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { ConsultaCitas } from './pages/citas/ConsultaCitas'
-import { EnfermedadesPage } from './pages/EnfermedadesPage';
+import { EnfermedadesPage } from './pages/enfermedades/EnfermedadesPage';
 import Login from './pages/Login'
 import Home from './pages/Home'
 // PrimeReact

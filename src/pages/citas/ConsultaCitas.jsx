@@ -1,11 +1,11 @@
-
 import { TabView, TabPanel } from 'primereact/tabview';
 import  { Calendar } from "react-multi-date-picker";
 import { Citas } from "./components/Citas";
 import { FormCreateCitas } from './components/FormCreateCitas';
 import { useCalendar } from "../../hooks/useCalendar";
 import gregorian_en_lowercase from "../../helpers/localeDatesCalendar";
- import FormPersonaModal from './components/FormPersonaModal';
+import HistorialMedicoPersona from './components/HistorialMedicoPersona';
+
 export const ConsultaCitas = () => {
     
   const { value, getNormalDate } = useCalendar()
@@ -35,7 +35,7 @@ export const ConsultaCitas = () => {
               />
             </TabPanel>
             <TabPanel header="Historial" rightIcon="pi pi-user-plus" headerClassName='w-1/3 text-lg'>
-             <FormPersonaModal/>
+             <HistorialMedicoPersona/>
             </TabPanel>
         </TabView>
       </div>
