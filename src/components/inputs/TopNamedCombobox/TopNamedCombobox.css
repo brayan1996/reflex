@@ -1,0 +1,66 @@
+.p-autocomplete-dropdown {
+  color: #ffffff;
+  background: rgb(99, 102, 241);
+  border: 1px solid rgb(99, 102, 241);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 3px;
+}
+.p-autocomplete-dropdown.p-button {
+  color: #ffffff;
+  background: rgb(99, 102, 241);
+  border: 1px solid rgb(99, 102, 241);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 3px;
+}
+.p-autocomplete-dropdown:enabled:hover {
+  background: rgb(99, 102, 241);
+  color: #ffffff;
+  border-color: rgb(99, 102, 241);
+}
+
+.p-autocomplete-dropdown:not(a):not(.p-disabled):hover {
+  background: rgb(99, 102, 241);
+  color: #ffffff;
+  border-color: rgb(99, 102, 241);
+}
+
+.p-inputtext:enabled:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: none;
+  border-color: rgba(107, 114, 128, 1);
+}
+
+.p-inputtext:enabled:hover {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: none;
+  border-color: rgba(107, 114, 128, 1);
+}
+
+.p-disabled, .p-component:disabled {
+  opacity: 1;
+  border: none;
+  height: max-content;
+}
+
+.p-inputtext-error {
+  border-color: #FCA5A5;
+}
+
+.p-inputtext-error:enabled:hover {
+  border-color: #EF4444;
+}
+
+.p-inputtext-error:enabled:focus {
+  border-color: #EF4444;
+}
+.text-special{
+  color: blue !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+}

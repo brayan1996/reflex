@@ -1,0 +1,10 @@
+export const terapeutas = [{"code": "P001","name": "John Doe"},
+{"code": "P002","name": "Jane Doe"},
+{"code": "P003","name": "Michael Smith"},
+{"code": "P004","name": "Emily Davis"},
+{"code": "P005","name": "William Brown"},
+{"code": "P006","name": "Sarah Johnson"},
+{"code": "P007","name": "David Wilson"},
+{"code": "P008","name": "Jessica Anderson"},
+{"code": "P009","name": "Robert Martinez"},
+{"code": "P010","name": "Carlos Lujan"}]
