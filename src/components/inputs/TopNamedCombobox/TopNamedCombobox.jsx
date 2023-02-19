@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { AutoComplete } from "primereact/autocomplete";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useLayoutEffect } from "react";
 import "./TopNamedCombobox.css";
 const textSpecial = {color:'rgb(30 64 175)' , fontSize:'1.15rem' ,fontWeight: 700}
 function TopNamedCombobox(props) {
@@ -44,11 +44,10 @@ function TopNamedCombobox(props) {
     }
   }, [props.state]);
 
+
   useEffect(() => {
     setFiltered(Array.isArray(props.data) ? props.data : [])
   }, [props.data])
-
-
   // Configura el valor inicial
   useEffect(() => {
     const v = props.value ?? props.defaultValue;
@@ -63,7 +62,9 @@ function TopNamedCombobox(props) {
     } else {
       setValue(v);
     }
-  }, [props.value]);
+  }, [props.value, filtered]);
+
+ 
   return (
     <div className={`${props.ContainerClass ?? 'w-full px-3 mb-5 mt-4'} `}>
       <div className="w-full">

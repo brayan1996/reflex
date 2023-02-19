@@ -5,6 +5,10 @@ import { personasSlice } from './slices/personas';
 import { direccionesSlice } from './slices/direcciones';
 import { reactivosSlice } from './slices/reactivos';
 import { historialSlice } from './slices/historial';
+import { terapeutasSlice } from './slices/terapeutas';
+import { diagnosticoInternoSlice } from './slices/diagnosticoMedicoInterno';
+import { diagnosticoMedicoSlice } from './slices/diagnosticoMedico/diagnosticoMedicoSlice';
+import { pacientesSlice } from './slices/pacientes';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +17,10 @@ export const store = configureStore({
       personas: personasSlice.reducer,
       direcciones: direccionesSlice.reducer,
       reactivos:reactivosSlice.reducer,
-      historial:historialSlice.reducer
+      historial:historialSlice.reducer,
+      terapeutas:terapeutasSlice.reducer,
+      diagnosticoInterno:diagnosticoInternoSlice.reducer,
+      diagnosticoMedico:diagnosticoMedicoSlice.reducer,
+      pacientes:pacientesSlice.reducer
   }
 })

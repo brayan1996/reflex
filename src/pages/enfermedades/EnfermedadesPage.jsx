@@ -1,32 +1,39 @@
-import {  useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button } from 'primereact/button';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
-import { setDiseasesSelected, deleteDisease } from '../../store/slices/enfermedades';
 import { Tablex } from '../../components/tablex/Tablex';
 import CreateAndUpdateEnfermedad from './components/CreateAndUpdateEnfermedad';
 
-const columnConfig = [
-    {
-      key: "code",
-      name: "Código",
-      width:'15%'
-    },
-    {
-      key: "name",
-      name: "Nombre",
-      width:'50%'
-    },
-    {
-      name: "Elimnar",
-      customComponent: "tableButtonDelete",
-      width:'80px'
-    }
-  ]
+// const columnConfig = [
+//     {
+//       key: "code",
+//       name: "Código",
+//       width:'15%'
+//     },
+//     {
+//       key: "name",
+//       name: "Nombre",
+//       width:'50%'
+//     },
+//     {
+//       name: "Elimnar",
+//       customComponent: "tableButtonDelete",
+//       width:'80px'
+//     }
+//   ]
 
  
 
-export const EnfermedadesPage = () => {
-  const { diseasesAllData } = useSelector( state=> state.enfermedades )
+export const EnfermedadesPage = ({
+  diseasesAllData,
+  columnConfig,
+  setDiseasesSelected,
+  deleteDisease,
+  selectedDiseases,
+  isLoadingDiseases,
+  updateDisease,
+  createDisease
+}) => {
   const dispatch = useDispatch(); 
   const select = (selected) => {
     dispatch( setDiseasesSelected(selected) )
@@ -70,7 +77,12 @@ export const EnfermedadesPage = () => {
                 heightScroll='380px'
             />
           </div>
-          <CreateAndUpdateEnfermedad/>
+          <CreateAndUpdateEnfermedad
+            selectedDiseases={selectedDiseases}
+            isLoadingDiseases={isLoadingDiseases}
+            updateDisease={updateDisease}
+            createDisease={createDisease}
+          />
         </div>
     </>
   )

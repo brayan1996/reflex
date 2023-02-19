@@ -14,7 +14,7 @@ export const Tablex = (props) => {
     const columnFactory = () => {
         const  columnConfig  = props.tableConfig;
         // const columns = [];
-        const columns = columnConfig.map((columnConfig, i)=>{
+        const columns = columnConfig?.map((columnConfig, i)=>{
             const column = columnConfig;
             const componentBody = props[column.customComponent]
               ? (rowData) => {

@@ -5,7 +5,8 @@ import { provincias } from "../dataFalsa/departamentos";
 import { distritos } from "../dataFalsa/departamentos";
 import { changeFormateDate } from "../helpers/transformDates";
 
-const useFieldFormPerson = ({numeroDocumento, dataAPerson, direccionPersonal}) => {
+const useFieldFormPerson = ({numeroDocumento, dataAPerson}) => {
+    //FALTA ADAPTAR EL NOMBRE DE LAS KEYS
     const [personaData, setPersonaData] = useState({})
     const [provinciasData, setProvinciasData] = useState([])
     const [distritosData, setDistritosData] = useState([])
@@ -15,9 +16,9 @@ const useFieldFormPerson = ({numeroDocumento, dataAPerson, direccionPersonal}) =
     const fechNac = useField({type:'date'})
     const sexo = useField({type:'text',keySelect:'code'})
     const dir = useField({type:'text'})
-    const dep = useField({type:'text',keySelect:'dptoCode'})
-    const prov = useField({type:'text',keySelect:'provCode'})
-    const dis = useField({type:'text', keySelect:'distCode'})
+    const dep = useField({type:'text',keySelect:'IDDEPARTAM'})
+    const prov = useField({type:'text',keySelect:'IDPROVI'})
+    const dis = useField({type:'text', keySelect:'IDDISTRI'})
     const resultado = useField({type:'text'})
     const telef = useField({type:'text'})
     const email = useField({type:'text'})
@@ -39,22 +40,12 @@ const useFieldFormPerson = ({numeroDocumento, dataAPerson, direccionPersonal}) =
           testimonio.onChange(dataAPerson.testimonio || '')
           observacion.onChange(dataAPerson.observacion || '')
           especial.onChange(dataAPerson.especial || '')
+          dir.onChange(dataAPerson.dir || '')
+          dep.onChange(dataAPerson.dpto || '')
+          prov.onChange(dataAPerson.prov || '')
+          dis.onChange(dataAPerson.dist || '')
         }
     }, [dataAPerson])
-    
-    useEffect(() => {
-        if(direccionPersonal){
-            dir.onChange(direccionPersonal.dir)
-            dep.onChange(direccionPersonal.dpto)
-            prov.onChange(direccionPersonal.prov)
-            dis.onChange(direccionPersonal.dist)
-        }else{
-            dir.onChange('')
-            dep.onChange('')
-            prov.onChange('')
-            dis.onChange('')
-        }
-    }, [direccionPersonal])
 
     useEffect(() => {
         setPersonaData({
@@ -77,19 +68,18 @@ const useFieldFormPerson = ({numeroDocumento, dataAPerson, direccionPersonal}) =
             dpto:dep.value,
             prov:prov.value,
             dist:dis.value,
-            dir:dir.value,
-            docPersona:nroDoc.value
+            dir:dir.value
         })
-    }, [dep.value, prov.value, dis.value, dir.value, nroDoc.value])
+    }, [dep.value, prov.value, dis.value, dir.value])
 
     useEffect(() => {
-        const provinciasSeleccionadas = provincias.filter( provincia => provincia.dptoCode === dep.value )
+        const provinciasSeleccionadas = provincias.filter( provincia => provincia.IDDEPA === dep.value )
+        console.log("🚀 ~ file: useFieldFormPerson.js:79 ~ useEffect ~ provinciasSeleccionadas", provinciasSeleccionadas)
         setProvinciasData(provinciasSeleccionadas)
-       
       }, [dep.value])
       
     useEffect(() => {
-        const distritosSeleccionados = distritos.filter( distrito => distrito.provCode === prov.value && distrito.dptoCode === dep.value)
+        const distritosSeleccionados = distritos.filter( distrito => distrito.IDPROVI === prov.value && distrito.IDDEPA === dep.value)
         setDistritosData(distritosSeleccionados)
     }, [prov.value, dep.value])
 

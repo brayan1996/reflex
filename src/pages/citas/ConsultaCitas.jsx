@@ -7,7 +7,6 @@ import gregorian_en_lowercase from "../../helpers/localeDatesCalendar";
 import HistorialMedicoPersona from './components/HistorialMedicoPersona';
 
 export const ConsultaCitas = () => {
-    
   const { value, getNormalDate } = useCalendar()
     return (
       <div className="w-full card">

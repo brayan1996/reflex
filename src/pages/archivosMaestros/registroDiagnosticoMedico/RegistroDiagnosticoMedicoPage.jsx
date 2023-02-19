@@ -1,8 +1,47 @@
+import { useDispatch, useSelector } from "react-redux"
 import { EnfermedadesPage } from "../../enfermedades/EnfermedadesPage"
+import { getAllDiagnosis, selectADiagnosis, deleteDiagnosis, updateDiagnosis, createDiagnosis } from "../../../store/slices/diagnosticoMedico"
+import { useEffect } from "react"
+import { adaptKeys } from "../../../helpers/transformObjects"
 
+const columnConfig = [
+  {
+    key: "CODIGO",
+    name: "Código",
+    width:'15%'
+  },
+  {
+    key: "NOMBRE",
+    name: "Nombre",
+    width:'50%'
+  },
+  {
+    name: "Elimnar",
+    customComponent: "tableButtonDelete",
+    width:'80px'
+  }
+]
 const registroDiagnosticoMedicoPage = () => {
+  const dispatch = useDispatch()
+  const {allDiagnosis, aDiagnosis, loadingDiagnosis} = useSelector( state=>state.diagnosticoMedico )
+  useEffect(() => {
+    dispatch(getAllDiagnosis())
+  }, [])
+  const keysValues= {CODIGO:'code', NOMBRE:'name'}
   return (
-    <EnfermedadesPage/>
+    <div>
+    <p>Registro de diagnostico medico interno</p>
+    <EnfermedadesPage
+      diseasesAllData={allDiagnosis}
+      columnConfig={columnConfig}
+      setDiseasesSelected={selectADiagnosis}
+      deleteDisease={deleteDiagnosis}
+      selectedDiseases={adaptKeys(aDiagnosis, keysValues)}
+      isLoadingDiseases={loadingDiagnosis}
+      updateDisease={updateDiagnosis}
+      createDisease={createDiagnosis}
+    />
+  </div>
   )
 }
 

@@ -1,8 +1,5 @@
 
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { createDirectionPersonal, updateDirecionPersonal } from "../../../store/slices/direcciones";
-import { createPerson, updateOnePerson } from "../../../store/slices/personas";
 import useFieldFormPerson from "../../../hooks/useFieldFormPerson";
 import TopNamedInput from "../../../components/inputs/TopNamedInput/TopNamedInput"
 import TopNamedCombobox from "../../../components/inputs/TopNamedCombobox/TopNamedCombobox";
@@ -12,7 +9,7 @@ import { departamentos } from "../../../dataFalsa/departamentos";
 import { ocupaciones } from "../../../dataFalsa/ocupaciones";
 import SaveAndCancelButtons from "../../../components/buttonsGeneral/SaveAndCancelButtons";
 
-export const FormPersona = ({nroDoc:numeroDocumento, closeModal, action, dataAPerson, direccionPersonal}) => {
+export const FormPersona = (props) => {
     const {  
             personaData,
             provinciasData,
@@ -32,28 +29,26 @@ export const FormPersona = ({nroDoc:numeroDocumento, closeModal, action, dataAPe
             ocupacion,
             testimonio,
             observacion,
-            especial 
-        } = useFieldFormPerson({numeroDocumento, dataAPerson, direccionPersonal})
+            especial
+        } = useFieldFormPerson({numeroDocumento:props.numeroDocumento, dataAPerson:props.dataAPerson})
     const { loadingPersons } = useSelector( state => state.personas )
+    const { vistaActual } = useSelector( state=>state.reactivos )
     const dispatch = useDispatch(); 
     const savePerson = () =>{
         if((!nroDoc.value || nroDoc.value ==='') && (!nombre.value || nombre.value ==='')){
             console.log('no existe')
             return
         } 
-        if(action === 'Actualizar'){
-            dispatch( updateOnePerson(dataAPerson.id,personaData) )
-            if(direccionPersonal) dispatch( updateDirecionPersonal(direccionPersonal.id, direccionData) )
-            else dispatch( createDirectionPersonal(direccionData) )
+        if(props.action === 'Actualizar'){
+            dispatch( props.updateOnePerson(props.dataAPerson.id,{...personaData, ...direccionData}) )
         }else{
-            dispatch(createPerson(personaData))
-            dispatch( createDirectionPersonal(direccionData) )
+            dispatch(props.createPerson({...personaData, ...direccionData}))
         }
-        if(closeModal) closeModal()
+        if(props.closeModal) props.closeModal()
     }
 
     const cancelSave = () =>{
-        if(closeModal) closeModal()
+        if(props.closeModal) props.closeModal()
     }
     
     
@@ -64,8 +59,8 @@ export const FormPersona = ({nroDoc:numeroDocumento, closeModal, action, dataAPe
         <div className='w-10/12 mt-10 mx-auto grid grid-cols-3 gap-4'>
             <TopNamedInput
                 {...nroDoc}
-                label='DNI/CE'
-                disabled={action === 'Actualizar'}
+                label={vistaActual === 'registro_paciente' ? "DNI/CE" : "CARNET"}
+                disabled={props.action === 'Actualizar'}
             />
             <TopNamedInput
                 {...nombre}
@@ -90,27 +85,30 @@ export const FormPersona = ({nroDoc:numeroDocumento, closeModal, action, dataAPe
                 {...dep}
                 label='Departamento'
                 data={departamentos}
-                dataKey="dptoCode"
-                textField="nombre"
-            />    
+                dataKey="IDDEPARTAM"
+                textField="DESCRDEPAR"
+            /> 
             <TopNamedCombobox
                 {...prov}
                 label='Provincia'
                 data={provinciasData}
-                dataKey="provCode"
-                textField="nombre"
-            /> 
+                dataKey="IDPROVI"
+                textField="DESCRPROVI"
+            />
             <TopNamedCombobox
                 {...dis}
                 label='Distrito'
                 data={distritosData}
-                dataKey="distCode"
-                textField="nombre"
-            />    
-            <TopNamedInput
-                {...resultado}
-                label='Resultado'
-            />
+                dataKey="IDDISTRI"
+                textField="DESCRDISTR"
+            />  
+           { 
+                vistaActual === 'registro_paciente' &&
+                <TopNamedInput
+                    {...resultado}
+                    label='Resultado'
+                />
+            }
             <TopNamedInput
                 {...telef}
                 label='Telefono'
@@ -119,28 +117,40 @@ export const FormPersona = ({nroDoc:numeroDocumento, closeModal, action, dataAPe
                 {...email}
                 label='Email'
             /> 
-            <TopNamedInput
-                {...observacion}
-                label='Observacion'
-            />
-            <CheckedComponent
-                {...especial}
-                label='Especial'
-            />
-            <TopNamedCombobox
-                {...testimonio}
-                label='Testimonio'
-                data={[{code:'f', name:'F'}]}
-                dataKey="code"
-                textField="name"
-            />  
-            <TopNamedCombobox
-               {...ocupacion}
-               label='Ocupación'
-               data={ocupaciones}
-               dataKey="code"
-               textField="name"
-            /> 
+            {
+                vistaActual === 'registro_paciente' &&
+                <TopNamedInput
+                    {...observacion}
+                    label='Observacion'
+                />
+            }
+           {
+                vistaActual === 'registro_paciente' &&
+                <CheckedComponent
+                    {...especial}
+                    label='Especial'
+                />
+            }
+            {    
+                vistaActual === 'registro_paciente' &&
+                <TopNamedCombobox
+                    {...testimonio}
+                    label='Testimonio'
+                    data={[{code:'f', name:'F'}]}
+                    dataKey="code"
+                    textField="name"
+                /> 
+            } 
+            {
+                vistaActual === 'registro_paciente' &&
+                <TopNamedCombobox
+                    {...ocupacion}
+                    label='Ocupación'
+                    data={ocupaciones}
+                    dataKey="code"
+                    textField="name"
+                /> 
+            }
         </div>
         <SaveAndCancelButtons
             handleSave={savePerson}

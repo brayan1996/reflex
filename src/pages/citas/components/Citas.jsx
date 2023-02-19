@@ -11,6 +11,7 @@ import { getHistorial } from "../../../store/slices/historial";
 import { Tablex } from "../../../components/tablex/Tablex";
 import { PersonModal } from "../components/PersonModal";
 import FormPersonaModal from "./FormPersonaModal";
+import TopNamedCombobox from "../../../components/inputs/TopNamedCombobox/TopNamedCombobox";
 
 const columnConfig = [
     {
@@ -20,7 +21,7 @@ const columnConfig = [
     {
       key: "hour",
       name: "Hora",
-      editComponent:"editInput"
+      editComponent:"multiHourComponent"
     },
     {
       name: "Nro.Doc",
@@ -64,9 +65,40 @@ const columnConfig = [
     {
       name: "Ticket",
       customComponent: "ticketComponent"
+    },
+    {
+      name: "Recibo",
+      customComponent: "reciboComponent"
     }
   ]
-
+const hoursDate = [
+  {hour:'7:00 AM', value:'7:00'},
+  {hour:'7:30 AM', value:'7:30'},
+  {hour:'8:00 AM', value:'8:00'},
+  {hour:'8:30 AM', value:'8:30'},
+  {hour:'9:00 AM', value:'9:00'},
+  {hour:'9:30 AM', value:'9:30'},
+  {hour:'10:00 AM', value:'10:00'},
+  {hour:'10:30 AM', value:'10:30'},
+  {hour:'11:00 AM', value:'11:00'},
+  {hour:'11:30 AM', value:'11:30'},
+  {hour:'12:00 M', value:'12:00'},
+  {hour:'12:30 PM', value:'12:30'},
+  {hour:'1:00 PM', value:'13:00'},
+  {hour:'1:30 PM', value:'13:30'},
+  {hour:'2:00 PM', value:'14:00'},
+  {hour:'2:30 PM', value:'14:30'},
+  {hour:'3:00 PM', value:'15:00'},
+  {hour:'3:30 PM', value:'15:30'},
+  {hour:'4:00 PM', value:'16:00'},
+  {hour:'4:30 PM', value:'16:30'},
+  {hour:'5:00 PM', value:'17:00'},
+  {hour:'5:30 PM', value:'17:30'},
+  {hour:'6:00 PM', value:'18:00'},
+  {hour:'6:30 PM', value:'18:30'},
+  {hour:'7:00 PM', value:'19:00'},
+  {hour:'7:30 PM', value:'19:30'},
+]
 export const Citas = ({value}) => {
     const [nroDoc, setNroDoc] = useState()
     const { citasData, isLoading } = useSelector( state=> state.citas )
@@ -143,10 +175,33 @@ export const Citas = ({value}) => {
       )
     }
 
+    const multiHourComponent = (options) => {
+      return (
+        <TopNamedCombobox
+            // label='Terapeuta'
+            data={hoursDate}
+            dataKey="value"
+            textField="hour"
+            value={options.value}
+            onSelect={ e => options.editorCallback(e.value) }
+        />
+      )
+    }
+
     const ticketComponent = (rowData) => {
       return(
         <Button
           icon='pi pi-file-pdf'
+          className="p-button-rounded p-button-text"
+          onClick={()=>console.log(rowData)}
+        />
+      )
+    }
+
+    const reciboComponent = (rowData) => {
+      return(
+        <Button
+          icon='pi pi-book'
           className="p-button-rounded p-button-text"
           onClick={()=>console.log(rowData)}
         />
@@ -174,8 +229,10 @@ export const Citas = ({value}) => {
             dateCheckComponent={dateCheckComponent}
             personModal={personModal}
             editInput={editInput}
+            multiHourComponent={multiHourComponent}
             modalInput={modalInput}
             ticketComponent={ticketComponent}
+            reciboComponent={reciboComponent}
             rowEditable
             loading={isLoading}
             updateData={updateData}

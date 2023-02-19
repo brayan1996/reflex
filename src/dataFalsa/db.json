@@ -25,7 +25,7 @@
       "balance": "200",
       "obs": "test1",
       "date": "01-01-2023",
-      "hour": "09:00"
+      "hour": "7:30"
     },
     {
       "id": "02",
@@ -258,6 +258,628 @@
       "id": 6,
       "code": "C229",
       "name": "Tumor de hígado"
+    }
+  ],
+  "terapeutas": [
+    {
+      "CARNET": "1",
+      "NOMBRE": "DISPONILEOKOK2",
+      "FECNAC": "29-01-2023",
+      "SEXO": "M",
+      "resultado": "",
+      "TELF": "",
+      "EMAIL": "",
+      "ocupacion": "",
+      "testimonio": "",
+      "observacion": "",
+      "especial": "",
+      "DPTO": 1,
+      "PROV": 2,
+      "DISTRITO": "04",
+      "DIRECCION": "test dir",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "CODIGO": 2,
+      "NOMBRE": "TRISOLINISULCATRINITARIA",
+      "FECNAC": null,
+      "SEXO": "F",
+      "DIRECCION": "URB.LOSLIBERTADORESMZ.CLOTE8",
+      "DPTO": "",
+      "PROV": "",
+      "DISTRITO": "",
+      "CARNET": "12",
+      "TELF": "531-3016",
+      "EMAIL": "",
+      "PERMANENTE": false,
+      "INACTIVO": "",
+      "FECINI": "",
+      "FECFIN": ""
+    },
+    {
+      "id": 3,
+      "CODIGO": 3,
+      "NOMBRE": "BELTRANFABIANSUSANALUZ",
+      "FECNAC": null,
+      "SEXO": "F",
+      "DIRECCION": "MZ.D-2LOTE1URB.COOVITIOMAR",
+      "DPTO": "LIMA",
+      "PROV": "LIMA",
+      "DISTRITO": "SANT",
+      "CARNET": "102",
+      "TELF": "9747-6417",
+      "EMAIL": "lojei@hotmail.com",
+      "PERMANENTE": false,
+      "INACTIVO": "",
+      "FECINI": "",
+      "FECFIN": ""
+    },
+    {
+      "id": 4,
+      "CODIGO": 4,
+      "NOMBRE": "VITALSALVADORVERONIKA",
+      "FECNAC": null,
+      "SEXO": "F",
+      "DIRECCION": "AA.HH.HROESDELABRENAMZ.CLT.7CAMPOY",
+      "DPTO": "LIMA",
+      "PROV": "LIMA",
+      "DISTRITO": "SJL",
+      "CARNET": "362",
+      "TELF": "374-8015",
+      "EMAIL": "veka2010@hotmail.com",
+      "PERMANENTE": false,
+      "INACTIVO": "",
+      "FECINI": "",
+      "FECFIN": ""
+    },
+    {
+      "id": 5,
+      "CODIGO": 5,
+      "NOMBRE": "MENDOZAMARTINEZMARIAMORAYMA",
+      "FECNAC": null,
+      "SEXO": "F",
+      "DIRECCION": "MZ.CLOTE18-AURB.LOSLIBERTADORES",
+      "DPTO": "LIMA",
+      "PROV": "LIMA",
+      "DISTRITO": "LOS",
+      "CARNET": "22",
+      "TELF": "9849-201",
+      "EMAIL": "",
+      "PERMANENTE": false,
+      "INACTIVO": "",
+      "FECINI": "",
+      "FECFIN": ""
+    },
+    {
+      "id": 6,
+      "CODIGO": 6,
+      "NOMBRE": "FLORESFERNANDEZMARILUZHAYDEE",
+      "FECNAC": null,
+      "SEXO": "F",
+      "DIRECCION": "JR.LASCEREZAS109URB.VALDIVIEZO",
+      "DPTO": "LIMA",
+      "PROV": "LIMA",
+      "DISTRITO": "SMP",
+      "CARNET": "031",
+      "TELF": "567-4569",
+      "EMAIL": "",
+      "PERMANENTE": true,
+      "INACTIVO": "",
+      "FECINI": "",
+      "FECFIN": ""
+    },
+    {
+      "id": 7,
+      "CODIGO": 7,
+      "NOMBRE": "ESPEJOVARILLASMARGARITAREYNA",
+      "FECNAC": null,
+      "SEXO": "F",
+      "DIRECCION": "JR.BERNARDOALCEDO626LOSLIBERTADORES",
+      "DPTO": "LIMA",
+      "PROV": "LIMA",
+      "DISTRITO": "SMP",
+      "CARNET": "08",
+      "TELF": "531-2642",
+      "EMAIL": "Rela@starmedia.com",
+      "PERMANENTE": true,
+      "INACTIVO": "",
+      "FECINI": "",
+      "FECFIN": ""
+    },
+    {
+      "id": 8,
+      "CODIGO": 8,
+      "NOMBRE": "BELTRANFABIANSIMON",
+      "FECNAC": null,
+      "SEXO": "M",
+      "DIRECCION": "MZ.P-3LOTE6DANIELALCIDESCARRION",
+      "DPTO": "LIMA",
+      "PROV": "LIMA",
+      "DISTRITO": "LOS",
+      "CARNET": "07",
+      "TELF": "533-18779720-3961",
+      "EMAIL": "belfasi@yahoo.es",
+      "PERMANENTE": false,
+      "INACTIVO": "",
+      "FECINI": "",
+      "FECFIN": ""
+    },
+    {
+      "id": 9,
+      "CODIGO": 9,
+      "NOMBRE": "BAUTISTAMIRANDAOSCAR",
+      "FECNAC": null,
+      "SEXO": "M",
+      "DIRECCION": "CALLELOSDIAMANTES117-5TA.ZONACOLLIQUE",
+      "DPTO": "LIMA",
+      "PROV": "LIMA",
+      "DISTRITO": "COMA",
+      "CARNET": "327",
+      "TELF": "9796-9087",
+      "EMAIL": "oscarbaumi22@hotmail.com",
+      "PERMANENTE": true,
+      "INACTIVO": "",
+      "FECINI": "",
+      "FECFIN": ""
+    },
+    {
+      "id": 10,
+      "CODIGO": 10,
+      "NOMBRE": "MONTALVANCORDOVAEDEL",
+      "FECNAC": null,
+      "SEXO": "F",
+      "DIRECCION": "JR.ARANGUREN271URB.STA.LUZMILA",
+      "DPTO": "LIMA",
+      "PROV": "LIMA",
+      "DISTRITO": "COMA",
+      "CARNET": "78",
+      "TELF": "992107697",
+      "EMAIL": "edmontc@hotmail.com",
+      "PERMANENTE": false,
+      "INACTIVO": "",
+      "FECINI": "",
+      "FECFIN": ""
+    }
+  ],
+  "diagnosticoMedicoInterno": [
+    {
+      "CODIGO": "AA 2",
+      "DESCRIP1": "ANEURISMA DE AORTA Y CONSECUENCIAS",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "CODIGO": "ACC",
+      "DESCRIP1": "ACCIDENTE"
+    },
+    {
+      "id": 3,
+      "CODIGO": "ART",
+      "DESCRIP1": "ARTRITIS DEBIDO A BACTERIAS"
+    },
+    {
+      "id": 4,
+      "CODIGO": "ATROF",
+      "DESCRIP1": "ATROFIA ESPINAL PROGRESIVA "
+    },
+    {
+      "id": 5,
+      "CODIGO": "BUR",
+      "DESCRIP1": "BURSITIS "
+    },
+    {
+      "id": 6,
+      "CODIGO": "C.H. ",
+      "DESCRIP1": "CANCER DE HUESOS"
+    },
+    {
+      "id": 7,
+      "CODIGO": "CAN",
+      "DESCRIP1": "CANCER "
+    },
+    {
+      "id": 8,
+      "CODIGO": "CC ",
+      "DESCRIP1": "CIRCULACION Y CONSECUENCIAS"
+    },
+    {
+      "id": 9,
+      "CODIGO": "CE ",
+      "DESCRIP1": "CUERPOS EXTRAÑOS"
+    },
+    {
+      "id": 10,
+      "CODIGO": "CIR",
+      "DESCRIP1": "CIRROSIS "
+    },
+    {
+      "id": 11,
+      "CODIGO": "COD_D",
+      "DESCRIP1": "NOMB_DIAGNOST"
+    },
+    {
+      "id": 12,
+      "CODIGO": "D.DE ",
+      "DESCRIP1": "DESPRENDIMIENTO DE RETINA"
+    },
+    {
+      "id": 13,
+      "CODIGO": "D.T. ",
+      "DESCRIP1": "DESVIACION TABIQUE"
+    },
+    {
+      "id": 14,
+      "CODIGO": "DH ",
+      "DESCRIP1": "DIABETES HORMONA Y/O CC"
+    },
+    {
+      "id": 15,
+      "CODIGO": "DM ",
+      "DESCRIP1": "DISTROFIA MUSCULAR"
+    },
+    {
+      "id": 16,
+      "CODIGO": "DOL",
+      "DESCRIP1": "DOLICOCOLON"
+    },
+    {
+      "id": 17,
+      "CODIGO": "E.M. ",
+      "DESCRIP1": "ESCLEROSIS MULTIPLE "
+    },
+    {
+      "id": 18,
+      "CODIGO": "ELA",
+      "DESCRIP1": "ESCLEROSIS LATERAL AMIOTROFICA"
+    },
+    {
+      "id": 19,
+      "CODIGO": "G",
+      "DESCRIP1": "GOTA "
+    },
+    {
+      "id": 20,
+      "CODIGO": "H",
+      "DESCRIP1": "HERNIAS"
+    },
+    {
+      "id": 21,
+      "CODIGO": "HEM. ",
+      "DESCRIP1": "HEMIPLEJIA "
+    },
+    {
+      "id": 22,
+      "CODIGO": "HEP",
+      "DESCRIP1": "HEPATITIS"
+    },
+    {
+      "id": 23,
+      "CODIGO": "IC ",
+      "DESCRIP1": "ICTIOSIS "
+    },
+    {
+      "id": 24,
+      "CODIGO": "INF",
+      "DESCRIP1": "INFECCIONES"
+    },
+    {
+      "id": 25,
+      "CODIGO": "IR ",
+      "DESCRIP1": "INSUFICIENCIA RENAL "
+    },
+    {
+      "id": 26,
+      "CODIGO": "LEU",
+      "DESCRIP1": "LEUCEMIA "
+    },
+    {
+      "id": 27,
+      "CODIGO": "LIN",
+      "DESCRIP1": "LINFOMA"
+    },
+    {
+      "id": 28,
+      "CODIGO": "NEU",
+      "DESCRIP1": "NEUMONIA "
+    },
+    {
+      "id": 29,
+      "CODIGO": "NT ",
+      "DESCRIP1": "NEUMOTORAX "
+    }
+  ],
+  "diagnosticoMedico": [
+    {
+      "CODIGO": "014922",
+      "NOMBRE": "PRECLAMPSIA",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "CODIGO": "960 ",
+      "NOMBRE": "HELICOBACTER PYLORI"
+    },
+    {
+      "id": 3,
+      "CODIGO": "A099",
+      "NOMBRE": "DIARREA Y GASTROENTERITIS DE PRESUNTO ORIGEN INFECCIOSO"
+    },
+    {
+      "id": 4,
+      "CODIGO": "B829",
+      "NOMBRE": "PARASITOSIS INTESTINAL"
+    },
+    {
+      "id": 5,
+      "CODIGO": "C159",
+      "NOMBRE": "TUMOR MALIGNO DEL ESOFAGO"
+    },
+    {
+      "id": 6,
+      "CODIGO": "C169",
+      "NOMBRE": "TUMOR MALIGNO DEL ESTOMAGO "
+    },
+    {
+      "id": 7,
+      "CODIGO": "C189",
+      "NOMBRE": "TUMOR MALIGNO DEL COLON  "
+    },
+    {
+      "id": 8,
+      "CODIGO": "C229",
+      "NOMBRE": "TUMOR MALIGNO DEL HIGADO "
+    },
+    {
+      "id": 9,
+      "CODIGO": "C259",
+      "NOMBRE": "TUMOR MALIGNO DEL PANCREAS "
+    },
+    {
+      "id": 10,
+      "CODIGO": "C349",
+      "NOMBRE": "TUMOR MALIGNO DE LOS BRONQUIOS O DEL PULMON "
+    },
+    {
+      "id": 11,
+      "CODIGO": "C419",
+      "NOMBRE": "TUMOR MALIGNO DE HUESO Y DEL CARTILAGO ARTICULAR "
+    },
+    {
+      "id": 12,
+      "CODIGO": "C439",
+      "NOMBRE": "MELANOMA MALIGNO DE PIEL "
+    },
+    {
+      "id": 13,
+      "CODIGO": "C509",
+      "NOMBRE": "TUMOR MALIGNO DE LA MAMA "
+    },
+    {
+      "id": 14,
+      "CODIGO": "C539",
+      "NOMBRE": "TUMOR MALIGNO DEL CUELLO DEL UTERO  "
+    },
+    {
+      "id": 15,
+      "CODIGO": "C619",
+      "NOMBRE": "TUMOR MALIGNO DE LA PROSTATA  "
+    },
+    {
+      "id": 16,
+      "CODIGO": "C679",
+      "NOMBRE": "TUMOR MALIGNO DE LA VEJIGA URINARIA "
+    },
+    {
+      "id": 17,
+      "CODIGO": "C699",
+      "NOMBRE": "TUMOR MALIGNO DEL OJO "
+    },
+    {
+      "id": 18,
+      "CODIGO": "C729",
+      "NOMBRE": "TUMOR MALIGNO DEL SISTEMA NERVIOSO CENTRAL  "
+    },
+    {
+      "id": 19,
+      "CODIGO": "C819",
+      "NOMBRE": "ENFERMEDAD DE HODGKIN "
+    },
+    {
+      "id": 20,
+      "CODIGO": "C919",
+      "NOMBRE": "LEUCEMIA LINFOIDE  "
+    },
+    {
+      "id": 21,
+      "CODIGO": "C929",
+      "NOMBRE": "LEUCEMIA MIELOIDE  "
+    },
+    {
+      "id": 22,
+      "CODIGO": "D269",
+      "NOMBRE": "TUMOR BENIGNO DEL UTERO  "
+    },
+    {
+      "id": 23,
+      "CODIGO": "D349",
+      "NOMBRE": "TUMOR BENIGNO DE TIROIDES"
+    },
+    {
+      "id": 24,
+      "CODIGO": "D619",
+      "NOMBRE": "ANEMIA APLASTICA"
+    },
+    {
+      "id": 25,
+      "CODIGO": "D696",
+      "NOMBRE": "TROMBOCITOPENIA "
+    }
+  ],
+  "pacientes": [
+    {
+      "DNI": "00008889",
+      "NOMBRE": "CHOTA ROCHA LIDIA JAIME",
+      "FECNAC": "",
+      "SEXO": "F",
+      "RESULTADO": " ",
+      "TELF": "993835954",
+      "EMAIL": " ",
+      "OCUPACION": "SECRETARIA ",
+      "TESTIMONIO": "f",
+      "OBSERVA": "dddd",
+      "especial": "",
+      "DPTO": "24",
+      "PROV": 2,
+      "DIST": "01",
+      "DIRECC": "PUCALPA 993835954",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "CODIGO": 900,
+      "NOMBRE": "MERA SANCHEZ HILMA ",
+      "FECNAC": null,
+      "SEXO": " ",
+      "DIRECC": "",
+      "DPTO": "14",
+      "PROV": 8,
+      "DIST": "",
+      "NROBASE": "",
+      "CASOEX": false,
+      "TELF": " ",
+      "EDAD": 0,
+      "OCUPACION": " ",
+      "OBSERVA": null,
+      "DNI": "",
+      "EMAIL": " ",
+      "TESTIMONIO": false,
+      "RESULTADO": " ",
+      "OBSRESUL": " "
+    },
+    {
+      "id": 3,
+      "CODIGO": 7553,
+      "NOMBRE": "CAPPONI ABELE",
+      "FECNAC": null,
+      "SEXO": "M",
+      "DIRECC": "AV ALEJANDRON TIRADO 158 STA. BEATRIZ",
+      "DPTO": "14",
+      "PROV": 8,
+      "DIST": "12",
+      "NROBASE": "",
+      "CASOEX": false,
+      "TELF": "995668862",
+      "EDAD": 0,
+      "OCUPACION": "DOCENTE",
+      "OBSERVA": null,
+      "DNI": "00007553",
+      "EMAIL": " ",
+      "TESTIMONIO": false,
+      "RESULTADO": " ",
+      "OBSRESUL": " "
+    },
+    {
+      "id": 4,
+      "CODIGO": 10406,
+      "NOMBRE": "HERNANDEZ ORDOÑEZ GILBEIRA COROMOTO ",
+      "FECNAC": null,
+      "SEXO": "F",
+      "DIRECC": "AV PATRIOTA CUADRA 687 ",
+      "DPTO": "14",
+      "PROV": 8,
+      "DIST": "36",
+      "NROBASE": "",
+      "CASOEX": false,
+      "TELF": "910796401",
+      "EDAD": 0,
+      "OCUPACION": "OPERARIA DE LIMPIEZA ",
+      "OBSERVA": null,
+      "DNI": "00010406",
+      "EMAIL": "",
+      "TESTIMONIO": false,
+      "RESULTADO": "",
+      "OBSRESUL": ""
+    },
+    {
+      "DNI": "00012712",
+      "NOMBRE": "CHOTA ROCHA NORA FLORENTINA ",
+      "FECNAC": "",
+      "SEXO": "F",
+      "RESULTADO": "",
+      "TELF": "936650556",
+      "EMAIL": " ",
+      "OCUPACION": "COMERCIANTE",
+      "TESTIMONIO": "",
+      "OBSERVA": "",
+      "especial": "",
+      "DPTO": 14,
+      "PROV": 11,
+      "DIST": "01",
+      "DIRECC": "URB SANTA ROSA MZ L LT 34",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "CODIGO": 17485,
+      "NOMBRE": "LING LOPEZ ISAURA",
+      "FECNAC": null,
+      "SEXO": "F",
+      "DIRECC": "JR CRNL PORTILLO 705 ",
+      "DPTO": "24",
+      "PROV": 2,
+      "DIST": "01",
+      "NROBASE": "",
+      "CASOEX": false,
+      "TELF": "990622185",
+      "EDAD": 0,
+      "OCUPACION": "AMA DE CASA",
+      "OBSERVA": null,
+      "DNI": "00017485",
+      "EMAIL": " ",
+      "TESTIMONIO": false,
+      "RESULTADO": " ",
+      "OBSRESUL": " "
+    },
+    {
+      "DNI": "00019756",
+      "NOMBRE": "CHUI PIO ANDY CRISTINA ",
+      "FECNAC": "",
+      "SEXO": "F",
+      "RESULTADO": " ",
+      "TELF": "989177336",
+      "EMAIL": " ",
+      "OCUPACION": "CONTADORA",
+      "TESTIMONIO": "",
+      "OBSERVA": "",
+      "especial": "",
+      "DPTO": 14,
+      "PROV": 8,
+      "DIST": "02",
+      "DIRECC": "PROLONGACION JAVIER PRADO 7277 URB MAYORAZGO",
+      "id": 7
+    },
+    {
+      "id": 8,
+      "CODIGO": 19871,
+      "NOMBRE": "IÑIGO DIAZ ISABEL",
+      "FECNAC": null,
+      "SEXO": "F",
+      "DIRECC": "CALLE GENOVESA MZ A LT26 LOS CEDROS DE VILLA",
+      "DPTO": "14",
+      "PROV": 8,
+      "DIST": "07",
+      "NROBASE": "",
+      "CASOEX": false,
+      "TELF": "981501466",
+      "EDAD": 0,
+      "OCUPACION": "ARTISTA",
+      "OBSERVA": null,
+      "DNI": "00019871",
+      "EMAIL": " ",
+      "TESTIMONIO": false,
+      "RESULTADO": " ",
+      "OBSRESUL": " "
     }
   ]
 }

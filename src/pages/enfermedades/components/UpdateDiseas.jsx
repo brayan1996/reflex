@@ -5,11 +5,11 @@ import { updateDisease, createDisease } from "../../../store/slices/enfermedades
 import TopNamedInput from "../../../components/inputs/TopNamedInput/TopNamedInput"
 import SaveAndCancelButtons from "../../../components/buttonsGeneral/SaveAndCancelButtons"
 
-const UpdateDiseas = ({title}) => {
+const UpdateDiseas = ({title, selectedDiseases, isLoadingDiseases, updateDisease, createDisease}) => {
     const [diseasesData, setDiseasesData] = useState({})
     const code = useField({type:'text'})
     const name = useField({type:'text'})
-    const { selectedDiseases, isLoadingDiseases } = useSelector( state => state.enfermedades )
+    // const { selectedDiseases, isLoadingDiseases } = useSelector( state => state.enfermedades )
     const dispatch = useDispatch()
     const handleCancel = () =>{
         code.onChange('')
