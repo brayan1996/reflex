@@ -3,13 +3,16 @@ import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import TopNamedInput from "../../../components/inputs/TopNamedInput/TopNamedInput"
 import { useField } from "../../../hooks/useField"
-import Personas from "../../../apis/Personas";
 import { createDate } from "../../../store/slices/citas";
 import { changeFormateDate } from "../../../helpers/transformDates";
+import Pacientes from "../../../apis/Pacientes";
+import FormPersonaModal from "./FormPersonaModal";
 
 export const FormCreateCitas = ({dateCalendar}) => {
     const [time, setTime] = useState({fecha:'',hora:''})
     const [cita, setCita] = useState({})
+    const [numeroDocumento, setNumeroDocumento] = useState('')
+    const [isOpen, setIsOpen] = useState(false)
     const fecha = useField({type:'date',defaultValue:time.fecha})
     const hora = useField({type:'time',defaultValue:time.hora})
     const nrDoc = useField({type:'text'})
@@ -51,7 +54,7 @@ export const FormCreateCitas = ({dateCalendar}) => {
         }
     }, [])
     
-
+    const setAName = (name) =>  cliente.onChange(name)
   return (
     <div className="w-full form1">
         <h1 className="subtitle">Formulario de citas</h1>
@@ -76,8 +79,13 @@ export const FormCreateCitas = ({dateCalendar}) => {
                 {...nrDoc}
                 label='Nro Doc'
                 onBlur={async(e)=>{
-                    const name = (await Personas.getPersonByDocument(e.target.value)).data[0]?.nombre || ''
+                    const name = (await Pacientes.requestAPatient(e.target.value))?.data.shift()?.NOMBRE
                     cliente.onChange(name)
+                    if(name)  cliente.onChange(name)
+                    else{
+                        setNumeroDocumento(e.target.value)
+                        setIsOpen(true)
+                    } 
                 }}
             />    
             <TopNamedInput
@@ -110,6 +118,14 @@ export const FormCreateCitas = ({dateCalendar}) => {
                     dispatch(createDate(newCita))
                     reset()
                 }}
+            />
+        </div>
+        <div className={isOpen ? '' :'hidden'}>
+            <FormPersonaModal
+                nroDoc={numeroDocumento}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                setAValue={setAName}
             />
         </div>
     </div>

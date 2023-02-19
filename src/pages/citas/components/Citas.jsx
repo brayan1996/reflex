@@ -1,17 +1,19 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Checkbox } from 'primereact/checkbox';
-import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button';
-import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
-import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from 'primereact/toast';
+import React, { useEffect, useState, useRef }   from "react";
+import { Checkbox }                             from 'primereact/checkbox';
+import { InputText }                            from 'primereact/inputtext';
+import { Button }                               from 'primereact/button';
+import { ConfirmDialog, confirmDialog }         from 'primereact/confirmdialog';
+import { useDispatch, useSelector }             from 'react-redux';
+import { Toast }                                from 'primereact/toast';
 import { requestDates, modifyDate, changeStateCitas, deleteDate, setCitasSelected } from "../../../store/slices/citas";
-import { setHistoryPersonSelected } from "../../../store/slices/reactivos/reactivosSlice";
-import { getHistorial } from "../../../store/slices/historial";
-import { Tablex } from "../../../components/tablex/Tablex";
-import { PersonModal } from "../components/PersonModal";
-import FormPersonaModal from "./FormPersonaModal";
-import TopNamedCombobox from "../../../components/inputs/TopNamedCombobox/TopNamedCombobox";
+import { setHistoryPersonSelected }             from "../../../store/slices/reactivos/reactivosSlice";
+import { getHistorial }                         from "../../../store/slices/historial";
+import { Tablex }                               from "../../../components/tablex/Tablex";
+import { PersonModal }                          from "../components/PersonModal";
+import FormPersonaModal                         from "./FormPersonaModal";
+import TopNamedCombobox                         from "../../../components/inputs/TopNamedCombobox/TopNamedCombobox";
+import { maximunNumberInArray }                 from "../../../helpers/transformArrays";
+
 
 const columnConfig = [
     {
@@ -49,6 +51,10 @@ const columnConfig = [
     {
       name: "op",
       key: "Op"
+    },
+    {
+      name: "#",
+      key: "targetTicketNumber"
     },
     {
       name: "Observación",
@@ -188,12 +194,17 @@ export const Citas = ({value}) => {
       )
     }
 
-    const ticketComponent = (rowData) => {
+    const ticketComponent = (rowData, _, __, setRowData, ___, ____, allData) => {
       return(
         <Button
           icon='pi pi-file-pdf'
           className="p-button-rounded p-button-text"
-          onClick={()=>console.log(rowData)}
+          onClick={()=>{
+            if(!rowData.targetTicketNumber){
+              const maxNumber = maximunNumberInArray(allData, 'targetTicketNumber')
+              setRowData({...rowData,targetTicketNumber:maxNumber + 1 })
+            }
+          }}
         />
       )
     }

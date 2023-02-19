@@ -74,7 +74,6 @@ const useFieldFormPerson = ({numeroDocumento, dataAPerson}) => {
 
     useEffect(() => {
         const provinciasSeleccionadas = provincias.filter( provincia => provincia.IDDEPA === dep.value )
-        console.log("🚀 ~ file: useFieldFormPerson.js:79 ~ useEffect ~ provinciasSeleccionadas", provinciasSeleccionadas)
         setProvinciasData(provinciasSeleccionadas)
       }, [dep.value])
       

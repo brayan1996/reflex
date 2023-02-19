@@ -1,13 +1,14 @@
 import { setDates, loadingDates } from "./citasSlice";
 import Citas from "../../../apis/Citas";
-import Personas from "../../../apis/Personas";
+import Pacientes from "../../../apis/Pacientes";
+
 export const requestDates = (dates) => {
     return async( dispatch ) => {
         dispatch( loadingDates() )
         const {data:allCitas} = await Citas.getAppointmentByDate(dates)
         for (const cita of allCitas) {
-            const { nombre } = (await Personas.getPersonByDocument(cita.doc)).data[0] || {nombre:''}
-            cita.cliente = nombre
+            const { NOMBRE } = (await Pacientes.requestAPatient(cita.doc)).data[0] || {NOMBRE:''}
+            cita.cliente = NOMBRE
         }
         dispatch( setDates({allCitas}) )
     }
@@ -26,7 +27,7 @@ export const deleteDate = (body) => async( dispatch ) =>{
     dispatch(requestDates(body.date))
 }
 
-export const createDate = (body) => async()=>{
+export const createDate = (body) => async(dispatch)=>{
     await Citas.createAppointment(body)
     dispatch( requestDates(body.date) )
 }

@@ -9,3 +9,10 @@ export const changeKeysLocaltionToInteger = (arrayValue,keyDist) =>
                 [keyDist]:String(location[keyDist]) || location[keyDist]}
             ))
     )
+
+export const maximunNumberInArray = (arrayData, keyName) =>(
+    arrayData.reduce((acc, curr)=>{  
+        if(curr[keyName] > acc)   return curr[keyName]    
+        else return acc       
+    },0)
+)

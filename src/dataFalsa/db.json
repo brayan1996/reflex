@@ -18,7 +18,7 @@
   },
   "citas": [
     {
-      "id": "01",
+      "id": 1,
       "doc": "75791236",
       "dateCheck": true,
       "advancement": "100",
@@ -28,7 +28,7 @@
       "hour": "7:30"
     },
     {
-      "id": "02",
+      "id": 2,
       "doc": "927318",
       "dateCheck": true,
       "advancement": "130",
@@ -39,7 +39,7 @@
       "therapist": "P010"
     },
     {
-      "id": "03",
+      "id": 3,
       "doc": "97222211",
       "dateCheck": true,
       "advancement": "200",
@@ -49,7 +49,7 @@
       "hour": "10:30"
     },
     {
-      "id": "05",
+      "id": 5,
       "doc": "23411222",
       "dateCheck": true,
       "advancement": "130",
@@ -59,7 +59,7 @@
       "hour": "12:30"
     },
     {
-      "id": "06",
+      "id": 6,
       "doc": "97222211",
       "dateCheck": true,
       "advancement": "200",
@@ -69,7 +69,7 @@
       "hour": "13:30"
     },
     {
-      "id": "08",
+      "id": 8,
       "doc": "75791236",
       "dateCheck": true,
       "advancement": "110",
@@ -79,7 +79,7 @@
       "hour": "11:00"
     },
     {
-      "id": "09",
+      "id": 9,
       "doc": "66622323",
       "dateCheck": true,
       "advancement": "130",
@@ -89,7 +89,7 @@
       "hour": "12:30"
     },
     {
-      "id": "10",
+      "id": 10,
       "doc": "23412333",
       "dateCheck": true,
       "advancement": "200",
@@ -105,7 +105,7 @@
       "obs": "test2",
       "date": "19-01-2023",
       "hour": "21:08",
-      "id": "4FituOH",
+      "id": 11,
       "dateCheck": true
     },
     {
@@ -115,7 +115,17 @@
       "obs": "test",
       "date": "19-01-2023",
       "hour": "22:01",
-      "id": "dq9IBue"
+      "id": 12
+    },
+    {
+      "doc": "22",
+      "advancement": "",
+      "balance": "",
+      "obs": "",
+      "date": "01-01-2023",
+      "hour": "01:38",
+      "id": 14,
+      "dateCheck": true
     }
   ],
   "personas": [
@@ -870,6 +880,60 @@
       "TESTIMONIO": false,
       "RESULTADO": " ",
       "OBSRESUL": " "
+    },
+    {
+      "DNI": "927318",
+      "NOMBRE": "Carlos",
+      "FECNAC": "01-02-2023",
+      "SEXO": "M",
+      "RESULTADO": "",
+      "TELF": "",
+      "EMAIL": "",
+      "OCUPACION": "D001",
+      "TESTIMONIO": "",
+      "OBSERVA": "",
+      "especial": true,
+      "DPTO": 1,
+      "PROV": 2,
+      "DIST": "02",
+      "DIRECC": "",
+      "id": 9
+    },
+    {
+      "DNI": "75791236",
+      "NOMBRE": "Bryan Andy Hurtado Alvarado",
+      "FECNAC": "16-12-1996",
+      "SEXO": "M",
+      "RESULTADO": "",
+      "TELF": "935756219",
+      "EMAIL": "brayan.ha.1996@gmail.com",
+      "OCUPACION": "E004",
+      "TESTIMONIO": "f",
+      "OBSERVA": "",
+      "especial": true,
+      "DPTO": 14,
+      "PROV": 8,
+      "DIST": "42",
+      "DIRECC": "av.Las palomas",
+      "id": 10
+    },
+    {
+      "DNI": "22",
+      "NOMBRE": "jhon Doe",
+      "FECNAC": "01-02-2023",
+      "SEXO": "",
+      "RESULTADO": "",
+      "TELF": "",
+      "EMAIL": "",
+      "OCUPACION": "",
+      "TESTIMONIO": "",
+      "OBSERVA": "",
+      "especial": false,
+      "DPTO": "",
+      "PROV": "",
+      "DIST": "",
+      "DIRECC": "",
+      "id": 11
     }
   ]
 }

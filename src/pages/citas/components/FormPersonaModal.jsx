@@ -1,7 +1,11 @@
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from 'react';
+import { createPatient } from "../../../store/slices/pacientes";
+import { setVistaPagina } from '../../../store/slices/reactivos';
+import Pacientes from "../../../apis/Pacientes";
 import { FormPersona } from "../../personas/components/FormPersona"
 import ModalMantenimiento from "../../../components/modals/mantenimientoModals"
-import { useEffect, useState } from 'react';
-import Personas from "../../../apis/Personas";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -20,20 +24,22 @@ const FormPersonaModal = (props) => {
 	const [close, setClose] = useState(false)
   const [nombre, setnombre] = useState('')
   const [isTherePerson, setIsTherePerson] = useState(true)
-  const getNamePerson = async(nrDoc) => {
-    return (await Personas.getPersonByDocument(nrDoc))?.data.shift()?.nombre
-  }
+  const dispatch = useDispatch()
+  
   const closeModal = () =>{
     setClose(true)
   }
+
+  const getAName = async() =>{
+    const nroDoc = props.nroDoc || props.options?.rowData.doc
+    return (await Pacientes.requestAPatient(nroDoc))?.data.shift()?.NOMBRE || ''
+  }
   useEffect(() => {
     (async function(){
-      const nroDoc = props.nroDoc || props.options.rowData.doc
-      const namePerson = await getNamePerson(nroDoc)
+      const namePerson = await getAName()
       if(namePerson){
         setnombre(namePerson)
         setIsTherePerson(true)
-        // props.options.editorCallback(namePerson)
       }else setIsTherePerson(false) 
     })()
   }, [props.nroDoc])
@@ -42,6 +48,10 @@ const FormPersonaModal = (props) => {
 		return setClose(false);
 	}, [close])
 
+  useEffect(() => {
+    dispatch(setVistaPagina('registro_paciente'))
+  }, [])
+  
   return (
     <div>
       {
@@ -54,11 +64,21 @@ const FormPersonaModal = (props) => {
             label='Agregar Persona'
             title='Agregar Persona'
             icon='pi pi-user-plus'
-            // isOpen={true}
+            isOpen={props.isOpen}
+            afterCloseModal={async()=>{
+              if(props.setIsOpen) props.setIsOpen(false)
+              if(props.setAValue){
+                const name = await getAName()
+                console.log("🚀 ~ file: FormPersonaModal.jsx:72 ~ afterCloseModal={async ~ name", name)
+                props.setAValue(name)
+              }
+            }}
           >
             <FormPersona
-              nroDoc={props.nroDoc || props.options.rowData.doc}
+              action='Crear'
+              numeroDocumento={props.nroDoc || props.options?.rowData.doc}
               closeModal={closeModal}
+              createPerson={createPatient}
             />
           </ModalMantenimiento>
         )

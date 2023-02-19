@@ -33,7 +33,8 @@ export const Tablex = (props) => {
                       newData.splice(index, 1);
                       setData(newData);
                     },
-                    index
+                    index,
+                    dataTablex
                   );
                 }
               : undefined;
