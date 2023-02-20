@@ -6,8 +6,9 @@ import { useCalendar } from "../../hooks/useCalendar";
 import gregorian_en_lowercase from "../../helpers/localeDatesCalendar";
 import HistorialMedicoPersona from './components/HistorialMedicoPersona';
 
-export const ConsultaCitas = () => {
+export const ConsultaCitas = ({pagina}) => {
   const { value, getNormalDate } = useCalendar()
+  
     return (
       <div className="w-full card">
         <div className='mx-auto w-1/3'>
@@ -28,11 +29,14 @@ export const ConsultaCitas = () => {
                 value={value}
               />
             </TabPanel>
-            <TabPanel header="Crear cita" rightIcon="pi pi-user-plus"  headerClassName='w-1/3 text-lg'>
-              <FormCreateCitas
-                dateCalendar={value}
-              />
-            </TabPanel>
+            {
+              (!pagina) &&
+              <TabPanel header="Crear cita" rightIcon="pi pi-user-plus"  headerClassName='w-1/3 text-lg'>
+                <FormCreateCitas
+                  dateCalendar={value}
+                />
+              </TabPanel>
+            }
             <TabPanel header="Historial" rightIcon="pi pi-user-plus" headerClassName='w-1/3 text-lg'>
              <HistorialMedicoPersona/>
             </TabPanel>

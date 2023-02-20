@@ -117,7 +117,7 @@ export const Tablex = (props) => {
     
   return (
     <div>
-      <div className="">
+      <div className="w-full">
         <div className="card">
           <DataTable
             value={dataTablex}

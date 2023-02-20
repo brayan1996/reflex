@@ -1,5 +1,5 @@
 import Pacientes from "../../../apis/Pacientes";
-import { loadingPatientsAction, finishLoadingPatients, requestPatients, seleactAPatient } from "./pacientesSlice";
+import { loadingPatientsAction, finishLoadingPatients, requestPatients, seleactAPatient, setPatientCreate } from "./pacientesSlice";
 import { adaptKeys } from "../../../helpers/transformObjects";
 
 const keysValues=  {
@@ -60,7 +60,8 @@ export const updatePatient = (id, body) => async(dispatch, /* getState */) =>{
 export const createPatient = (body) => async(dispatch, /* getState */) =>{
     dispatch( loadingPatientsAction() )
     try {
-        await Pacientes.createPatient(adaptKeys(body, keysValues))
+        const{data:patient} = await Pacientes.createPatient(adaptKeys(body, keysValues))
+        dispatch(setPatientCreate(patient))
         dispatch(getPatient())
     } catch (error) {
         console.log(error)

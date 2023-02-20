@@ -63,7 +63,16 @@ function TopNamedCombobox(props) {
       setValue(v);
     }
   }, [props.value, filtered]);
-
+  
+  useEffect(() => {
+    (async function(){
+      if (props.search) {
+        const result = await props.search(props.value);
+        setFiltered(result);
+      }
+    })()
+  }, [])
+  
  
   return (
     <div className={`${props.ContainerClass ?? 'w-full px-3 mb-5 mt-4'} `}>
@@ -73,6 +82,7 @@ function TopNamedCombobox(props) {
             props.classLabel || "block uppercase tracking-wide text-xs font-bold mb-2 " +
             (props.color || "text-gray-700")
           }
+          style={{ "color": "black" }}
         >
           {props.label || (props.color ? "invisible" : "")}
         </label>

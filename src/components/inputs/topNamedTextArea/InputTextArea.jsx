@@ -12,6 +12,7 @@ const InputTextArea = (props) => {
         <label
             className='form__label'
             title="titulo"
+            style={{ "color": "black" }}
           >
             {props.label }
         </label>

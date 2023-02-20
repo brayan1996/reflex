@@ -51,7 +51,6 @@ const FormPersonaModal = (props) => {
   useEffect(() => {
     dispatch(setVistaPagina('registro_paciente'))
   }, [])
-  
   return (
     <div>
       {
@@ -67,11 +66,6 @@ const FormPersonaModal = (props) => {
             isOpen={props.isOpen}
             afterCloseModal={async()=>{
               if(props.setIsOpen) props.setIsOpen(false)
-              if(props.setAValue){
-                const name = await getAName()
-                console.log("🚀 ~ file: FormPersonaModal.jsx:72 ~ afterCloseModal={async ~ name", name)
-                props.setAValue(name)
-              }
             }}
           >
             <FormPersona

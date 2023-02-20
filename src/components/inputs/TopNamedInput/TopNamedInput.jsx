@@ -48,9 +48,9 @@ const TopNamedInput = (props) => {
           <label
             className='form__label'
             title="titulo"
+            style={{ "color": "black" }}
           >
-            {props.label || (props.color ? "invisible" : "")}
-            {props.searchInCarta && props.searchInCarta}
+            {props.label}
           </label>
           <input
               style={{ height: '37px' }}

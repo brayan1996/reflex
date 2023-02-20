@@ -10,7 +10,7 @@ const useFormHistorial = () => {
     const dolencias = useField({type:'text'})
     const codigo = useField({type:'text'})
     const nombre = useField({type:'text'})
-    const terapeuta = useField({type:'text'})
+    const terapeuta = useField({type:'text',keySelect:'CARNET'})
     const diagExt = useField({type:'text'})
     const medicamentos = useField({type:'text'})
     const anticoceptivos = useField({type:'text'})

@@ -5,7 +5,8 @@ export const pacientesSlice = createSlice({
     initialState: {
         patientsData: [],
         loadingPatients:false,
-        APatient:{}
+        APatient:{},
+        patientCreated:{}
     },
     reducers: {
         loadingPatientsAction: (state ) => {
@@ -19,10 +20,13 @@ export const pacientesSlice = createSlice({
         },
         seleactAPatient:(state, action ) =>{
             state.APatient = action.payload
+        },
+        setPatientCreate:(state, action) =>{
+            state.patientCreated = action.payload
         }
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { loadingPatientsAction, finishLoadingPatients, requestPatients, seleactAPatient} =  pacientesSlice.actions;
+export const { loadingPatientsAction, finishLoadingPatients, requestPatients, seleactAPatient, setPatientCreate} =  pacientesSlice.actions;

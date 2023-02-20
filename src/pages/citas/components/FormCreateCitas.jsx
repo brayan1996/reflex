@@ -1,12 +1,32 @@
 import { Button } from "primereact/button";
 import { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TopNamedInput from "../../../components/inputs/TopNamedInput/TopNamedInput"
 import { useField } from "../../../hooks/useField"
 import { createDate } from "../../../store/slices/citas";
+import { setPatientCreate } from "../../../store/slices/pacientes";
 import { changeFormateDate } from "../../../helpers/transformDates";
 import Pacientes from "../../../apis/Pacientes";
 import FormPersonaModal from "./FormPersonaModal";
+import TopNamedCombobox from "../../../components/inputs/TopNamedCombobox/TopNamedCombobox";
+import useFieldChecked from "../../../hooks/useFieldChecked";
+import CheckedComponent from "../../../components/inputs/checkedComponent/CheckedComponent";
+
+const tarifaCitaOptions = [
+    {code:'ct',name:'Cancela todo'},
+    {code:'s',name:'Social'},
+    {code:'v',name:'Vale'},
+    {code:'mt',name:'Media tarifa'},
+    {code:'r',name:'Reserva'}]
+  
+const tarifaAdelantoOptions =[
+    {code:'a20',name:'Adelanto 20'},
+    {code:'a30',name:'Adelanto 30'},
+    {code:'r',name:'Reserva'},
+]   
+
+const d = new Date()
+const fechaActualValue= `${d.getFullYear()}-${('0' + (d.getMonth() + 1)).slice(-2)}-${('0' + d.getDate()).slice(-2)}`
 
 export const FormCreateCitas = ({dateCalendar}) => {
     const [time, setTime] = useState({fecha:'',hora:''})
@@ -17,44 +37,79 @@ export const FormCreateCitas = ({dateCalendar}) => {
     const hora = useField({type:'time',defaultValue:time.hora})
     const nrDoc = useField({type:'text'})
     const cliente = useField({type:'text'})
-    const adelanto = useField({type:'text'})
-    const saldo = useField({type:'text'})
-    // const op = useField({type:'text'})
+    const adelanto = useField({type:'number'})
+    const final = useField({type:'number'})
+    const total = useField({type:'number'})
+    const citaChecked = useFieldChecked({})
     const observacion = useField({type:'text'})
+    const { patientCreated } = useSelector(state=>state.pacientes)
     const dispatch = useDispatch(); 
 
     const reset = () =>{
         nrDoc.onChange('')
         cliente.onChange('')
         adelanto.onChange('')
-        saldo.onChange('')
+        final.onChange('')
         observacion.onChange('')
+        total.onChange('')
+        citaChecked.onChange(false)
     }
+    const tarificaCitaSelected = (tarifaCode) =>{
+        const operationTarifaCita={
+            'ct': _ =>{adelanto.onChange(0);final.onChange(50);total.onChange(50)},
+            's':()=>{adelanto.onChange(0);final.onChange(0);total.onChange(0)},
+            'v':()=>{adelanto.onChange(0);final.onChange(0);total.onChange(0)},
+            'mt':()=>{adelanto.onChange(25);final.onChange(0);total.onChange(25)},
+            'r':()=>{adelanto.onChange(50);final.onChange(0);total.onChange(50)}
+        }
+        return operationTarifaCita[tarifaCode]()
+    }
+
+    const tarifaAdelantoSelected = (adelantoCOde)=>{
+        const operationsAdelantoCita={
+            'a20': ()=>{adelanto.onChange(20);final.onChange(0);total.onChange(20)},
+            'a30': ()=>{adelanto.onChange(30);final.onChange(0);total.onChange(30)},
+            'r':()=>{adelanto.onChange(50);final.onChange(0);total.onChange(50)}
+        }
+        return operationsAdelantoCita[adelantoCOde]()
+    }
+
+    useEffect(() => {
+        total.onChange( (parseInt(adelanto.value)|| 0) + (parseInt(final.value) || 0))
+    }, [adelanto.value, final.value])
+    
     useEffect(() => {
         setCita({
             doc:nrDoc.value,
             advancement:adelanto.value,
-            balance:saldo.value,
+            balance:final.value,
             obs:observacion.value,
             date:fecha.value,
-            hour:hora.value
+            hour:hora.value,
+            total:total.value,
+            dateCheck:citaChecked.checked
         })
-    }, [nrDoc.value, adelanto.value, saldo.value, observacion.value, fecha.value, hora.value])
+    }, [nrDoc.value, adelanto.value, final.value, observacion.value, fecha.value, hora.value, total.value, citaChecked.checked])
     
     useEffect(() => {
         if(dateCalendar) setTime(oldTime=>({hora:oldTime.hora,fecha:changeFormateDate(dateCalendar)}))
     }, [dateCalendar])
     
     useEffect(() => {
+        cliente.onChange(patientCreated.NOMBRE)
+    }, [patientCreated])
+    
+
+    useEffect(() => {
         const d = new Date()
         const fechaActual= `${d.getFullYear()}-${('0' + (d.getMonth() + 1)).slice(-2)}-${('0' + d.getDate()).slice(-2)}`
         const horaActual = `${('0' + d.getHours()).slice(-2)}:${('0' + d.getMinutes()).slice(-2)}`
+        dispatch(setPatientCreate({}))
         return () => {
           setTime({fecha:fechaActual,hora:horaActual})
         }
     }, [])
     
-    const setAName = (name) =>  cliente.onChange(name)
   return (
     <div className="w-full form1">
         <h1 className="subtitle">Formulario de citas</h1>
@@ -84,41 +139,41 @@ export const FormCreateCitas = ({dateCalendar}) => {
                 {...cliente}
                 label='Cliente'
             />
-            {/* checkbox */}
             <TopNamedInput
-               {...adelanto}
-               label='cita'
-            /> 
-             {/* combobox -- datos en imagen*/}
-           <TopNamedInput
-              {...adelanto}
-              label='Tarifa cita'
-            />  
-            {/* combobox -- datos en imagen*/}
-            <TopNamedInput
-                {...adelanto}
+                {...observacion}
+                label='Observación'
+            />
+            <CheckedComponent
+                label='cita'
+                {...citaChecked}
+            />
+            <TopNamedCombobox
+                label='Tarifa cita'
+                data={tarifaCitaOptions}
+                dataKey="code"
+                textField="name"
+                onSelect={(e)=>tarificaCitaSelected(e.code)}
+            />
+            <TopNamedCombobox
                 label='Tarifa adelanto'
+                data={tarifaAdelantoOptions}
+                dataKey="code"
+                textField="name"
+                onSelect={e=>tarifaAdelantoSelected(e.code)}
             />
              <TopNamedInput
                 {...adelanto}
                 label='Imp adelanto'
             />   
             <TopNamedInput
-                {...adelanto}
+                {...final}
                 label='Imp final'
             />  
             <TopNamedInput
-                {...saldo}
+                {...total}
                 label='total'
-            /> 
-            {/* <TopNamedInput
-                {...op}
-                label='Op'
-            />     */}
-            <TopNamedInput
-                {...observacion}
-                label='Observación'
-            />      
+                disabled
+            />       
         </div>
         <div className="grid grid-cols-2 gap-4 w-1/2 mx-auto">
             <Button
@@ -133,7 +188,7 @@ export const FormCreateCitas = ({dateCalendar}) => {
                 icon="pi pi-check"
                 onClick={()=>{
                     const fecha = changeFormateDate(cita.date)
-                    const newCita = {...cita,date:fecha}
+                    const newCita = {...cita,date:fecha,primerPago:fechaActualValue}
                     dispatch(createDate(newCita))
                     reset()
                 }}
@@ -144,7 +199,6 @@ export const FormCreateCitas = ({dateCalendar}) => {
                 nroDoc={numeroDocumento}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
-                setAValue={setAName}
             />
         </div>
     </div>

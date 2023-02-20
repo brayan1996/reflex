@@ -25,7 +25,8 @@
       "balance": "200",
       "obs": "test1",
       "date": "01-01-2023",
-      "hour": "7:30"
+      "hour": "7:30",
+      "therapist": "031"
     },
     {
       "id": 2,
@@ -126,6 +127,42 @@
       "hour": "01:38",
       "id": 14,
       "dateCheck": true
+    },
+    {
+      "doc": "232",
+      "advancement": 0,
+      "balance": 50,
+      "obs": "",
+      "date": "01-01-2023",
+      "hour": "16:30",
+      "total": 50,
+      "dateCheck": true,
+      "id": 15
+    },
+    {
+      "doc": "75791236",
+      "advancement": 25,
+      "balance": 15,
+      "obs": "",
+      "date": "02-01-2023",
+      "hour": "7:00",
+      "total": 40,
+      "dateCheck": true,
+      "primerPago": "2023-02-20",
+      "id": 16,
+      "segundoPago": "2023-02-20"
+    },
+    {
+      "doc": "86345",
+      "advancement": 0,
+      "balance": 50,
+      "obs": "obs",
+      "date": "20-02-2023",
+      "hour": "18:06",
+      "total": 50,
+      "dateCheck": true,
+      "primerPago": "2023-02-20",
+      "id": 17
     }
   ],
   "personas": [
@@ -223,6 +260,36 @@
       "result": "",
       "obsGenerales": "",
       "id": 1
+    },
+    {
+      "nroDoc": "75791236",
+      "menstruation": "",
+      "gestation": "",
+      "testimony": "",
+      "ailments": "",
+      "code": "75791236",
+      "name": "Bryan Andy Hurtado Alvarado",
+      "diagExt": "",
+      "medicines": "",
+      "contraceptives": "",
+      "operation": "",
+      "observation": "",
+      "diagReflex": "",
+      "startingWeight": "",
+      "finalWeight": "",
+      "startDate": "",
+      "finalDate": "",
+      "size": "",
+      "diagnosis1": "",
+      "diagnosis2": "",
+      "diagnosis3": "",
+      "diagnosis4": "",
+      "diagnosis5": "",
+      "diagnosis6": "",
+      "bsPriv": "",
+      "result": "",
+      "obsGenerales": "",
+      "id": 2
     }
   ],
   "enfermedades": [
@@ -263,7 +330,7 @@
   "terapeutas": [
     {
       "CARNET": "1",
-      "NOMBRE": "DISPONILEOKOK2",
+      "NOMBRE": "DISPONILEOKOK22",
       "FECNAC": "29-01-2023",
       "SEXO": "M",
       "resultado": "",
@@ -449,9 +516,9 @@
       "id": 1
     },
     {
-      "id": 2,
       "CODIGO": "ACC",
-      "DESCRIP1": "ACCIDENTE"
+      "DESCRIP1": "ACCIDENTE",
+      "id": 2
     },
     {
       "id": 3,
@@ -736,26 +803,22 @@
       "id": 1
     },
     {
-      "id": 3,
-      "CODIGO": 7553,
-      "NOMBRE": "CAPPONI ABELE",
-      "FECNAC": null,
+      "DNI": "00007553",
+      "NOMBRE": "CAPPONI ABELE2",
+      "FECNAC": "",
       "SEXO": "M",
-      "DIRECC": "AV ALEJANDRON TIRADO 158 STA. BEATRIZ",
-      "DPTO": "14",
+      "RESULTADO": " ",
+      "TELF": "995668862",
+      "EMAIL": " ",
+      "OCUPACION": "DOCENTE",
+      "TESTIMONIO": "",
+      "OBSERVA": "",
+      "especial": "",
+      "DPTO": 14,
       "PROV": 8,
       "DIST": "12",
-      "NROBASE": "",
-      "CASOEX": false,
-      "TELF": "995668862",
-      "EDAD": 0,
-      "OCUPACION": "DOCENTE",
-      "OBSERVA": null,
-      "DNI": "00007553",
-      "EMAIL": " ",
-      "TESTIMONIO": false,
-      "RESULTADO": " ",
-      "OBSRESUL": " "
+      "DIRECC": "AV ALEJANDRON TIRADO 158 STA. BEATRIZ",
+      "id": 3
     },
     {
       "id": 4,
@@ -896,24 +959,6 @@
       "id": 10
     },
     {
-      "DNI": "22",
-      "NOMBRE": "jhon Doe",
-      "FECNAC": "01-02-2023",
-      "SEXO": "",
-      "RESULTADO": "",
-      "TELF": "",
-      "EMAIL": "",
-      "OCUPACION": "",
-      "TESTIMONIO": "",
-      "OBSERVA": "",
-      "especial": false,
-      "DPTO": "",
-      "PROV": "",
-      "DIST": "",
-      "DIRECC": "",
-      "id": 11
-    },
-    {
       "DNI": "22222",
       "NOMBRE": "Carlitos",
       "FECNAC": "",
@@ -930,6 +975,60 @@
       "DIST": "",
       "DIRECC": "",
       "id": 12
+    },
+    {
+      "DNI": "232",
+      "NOMBRE": "Juanitpo",
+      "FECNAC": "31-01-2023",
+      "SEXO": "M",
+      "RESULTADO": "ddd",
+      "TELF": "",
+      "EMAIL": "",
+      "OCUPACION": "P005",
+      "TESTIMONIO": "",
+      "OBSERVA": "",
+      "especial": false,
+      "DPTO": 2,
+      "PROV": 2,
+      "DIST": "02",
+      "DIRECC": "ddd",
+      "id": 13
+    },
+    {
+      "DNI": "664564",
+      "NOMBRE": "carlos",
+      "FECNAC": "09-02-2023",
+      "SEXO": "",
+      "RESULTADO": "",
+      "TELF": "",
+      "EMAIL": "",
+      "OCUPACION": "",
+      "TESTIMONIO": "",
+      "OBSERVA": "",
+      "especial": false,
+      "DPTO": "",
+      "PROV": "",
+      "DIST": "",
+      "DIRECC": "",
+      "id": 14
+    },
+    {
+      "DNI": "86345",
+      "NOMBRE": "Juanito",
+      "FECNAC": "31-01-2023",
+      "SEXO": "",
+      "RESULTADO": "",
+      "TELF": "",
+      "EMAIL": "",
+      "OCUPACION": "",
+      "TESTIMONIO": "",
+      "OBSERVA": "",
+      "especial": false,
+      "DPTO": "",
+      "PROV": "",
+      "DIST": "",
+      "DIRECC": "",
+      "id": 15
     }
   ]
 }

@@ -16,6 +16,7 @@ import { EnfermedadesPage } from './pages/enfermedades/EnfermedadesPage';
 import Login from './pages/Login'
 import Home from './pages/Home'
 import PersonasPage from './pages/personas/PersonasPage';
+import ResultadoConsulta from './pages/resultadoConsulta/ResultadoConsulta';
 import ResgistroDiagnosticoPage from './pages/archivosMaestros/registroDiagnosticoInterno/ResgistroDiagnosticoPage';
 import RegistroDiagnosticoMedicoPage from './pages/archivosMaestros/registroDiagnosticoMedico/RegistroDiagnosticoMedicoPage';
 import RegistroPacientesPage from './pages/archivosMaestros/registroPacientes/RegistroPacientesPage';
@@ -83,63 +84,8 @@ function App() {
           />
           <Route
             exact
-            path={'atencion-diaria-paciente'}
-            element={<AtencionDiariaPacientePage/>}
-          />
-          <Route
-            exact
-            path={'atencion-diaria-terapeuta'}
-            element={<AtencionDiariaTerapeutaPage/>}
-          />
-          <Route
-            exact
-            path={'cobranza'}
-            element={<CobranzaPage/>}
-          />
-          <Route
-            exact
-            path={'datos-paciente'}
-            element={<DatosPaciente/>}
-          />
-          <Route
-            exact
-            path={'estadistica-paciente-resultado'}
-            element={<EstadisticaPacienteResultadoPage/>}
-          />
-          <Route
-            exact
-            path={'estadistica-pacientes-edad'}
-            element={<EstadisticaPacientesEdadPage/>}
-          />
-          <Route
-            exact
-            path={'estadistica-pacientes-sexo'}
-            element={<EstadisticaPacientesSexoPage/>}
-          />
-          <Route
-            exact
-            path={'planilla-terapeuta-diaria'}
-            element={<PlanillaTerapeutasDiariaPage/>}
-          />
-          <Route
-            exact
-            path={'planilla-terapeuta-mensual'}
-            element={<PlanillaTerapeutaMensualPage/>}
-          />
-          <Route
-            exact
-            path={'planilla-terapeuta-mensual-rotatorio'}
-            element={<PlanillaTerapeutaMensualRotatorioPage/>}
-          />
-          <Route
-            exact
-            path={'reporte-diaria'}
-            element={<ReporteDiariaPage/>}
-          />
-          <Route
-            exact
-            path={'separacion-cita-diario'}
-            element={<SeparacionCitaDiarioPage/>}
+            path={'resultado-consulta'}
+            element={<ResultadoConsulta/>}
           />
         </Route>
       </Routes>

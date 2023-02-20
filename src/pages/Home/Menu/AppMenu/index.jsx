@@ -85,9 +85,9 @@ export default function AppMenu() {
         {
           label: 'Resultado de la consulta',
           icon: 'pi pi-fw pi-calendar-plus',
-          to: '/citas',
+          to: '/resultado-consulta',
           command: () => {
-            navigate('/citas');
+            navigate('/resultado-consulta');
           }
         }
       ]

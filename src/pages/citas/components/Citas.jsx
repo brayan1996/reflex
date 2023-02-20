@@ -13,7 +13,7 @@ import { PersonModal }                          from "../components/PersonModal"
 import FormPersonaModal                         from "./FormPersonaModal";
 import TopNamedCombobox                         from "../../../components/inputs/TopNamedCombobox/TopNamedCombobox";
 import { maximunNumberInArray }                 from "../../../helpers/transformArrays";
-
+import { day } from "../../../helpers/getDateNow";
 
 const columnConfig = [
     {
@@ -42,15 +42,17 @@ const columnConfig = [
     },
     {
       name: "Adelanto",
-      key: "advancement"
+      key: "advancement",
+      editComponent:"editInput"
     },
     {
       key: "balance",
-      name: "Saldo"
+      name: "Saldo",
+      editComponent:"editInput"
     },
     {
-      name: "op",
-      key: "Op"
+      name: "Total",
+      key: "total"
     },
     {
       name: "#",
@@ -121,7 +123,11 @@ export const Citas = ({value}) => {
       });
     };
     
-    const updateData = async( newData ) => {
+    const updateData = async( newData, oldData ) => {
+      newData.advancement = parseInt(newData.advancement) || 0
+      newData.balance = parseInt(newData.balance) || 0
+      newData.total =  newData.advancement + newData.balance
+      if(newData.balance !== oldData.balance) newData.segundoPago = day()
       dispatch( modifyDate(newData) )
     }
 

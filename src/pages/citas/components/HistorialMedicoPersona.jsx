@@ -7,13 +7,12 @@ import TopNamedCombobox from "../../../components/inputs/TopNamedCombobox/TopNam
 import CheckedComponent from '../../../components/inputs/checkedComponent/CheckedComponent';
 import SaveAndCancelButtons from '../../../components/buttonsGeneral/SaveAndCancelButtons';
 import useFormHistorial from '../../../hooks/useFormHistorial';
-import { terapeutas } from '../../../dataFalsa/therapist';
+import Terapeutas from '../../../apis/Terapeutas';
 
 const HistorialMedicoPersona = () => {
   const { isExist, isLoadingHistorial, historialSelected } = useSelector( state => state.historial )
   const { diseasesAllData } = useSelector( state => state.enfermedades )
   const { citaSelected } = useSelector( state => state.citas )
-  console.log("🚀 ~ file: HistorialMedicoPersona.jsx:15 ~ HistorialMedicoPersona ~ citaSelected", citaSelected)
   const dispatch = useDispatch(); 
   const {
     deleteAllFieldsValues,
@@ -51,6 +50,13 @@ const HistorialMedicoPersona = () => {
     else dispatch( createHistorial(historialData) )
     if(!citaSelected.therapist) dispatch( modifyDate({...citaSelected,therapist:terapeuta.value}) )
   }
+
+  const searchText = async(value) => {
+    value = value || 'a'
+    if(!value) return
+    const {data:terapeutas} = await Terapeutas.requestTextSearch(value)
+    return terapeutas
+  }
   return (
     <div className="w-full form1">
       <p className="title">Historial Medico</p>
@@ -67,9 +73,10 @@ const HistorialMedicoPersona = () => {
           />
           <TopNamedCombobox
             label='Terapeuta'
-            data={terapeutas}
-            dataKey="code"
-            textField="name"
+            // data={terapeutas}
+            search={searchText}
+            dataKey="CARNET"
+            textField="NOMBRE"
             disabled={citaSelected.therapist}
             {...terapeuta}
           />
