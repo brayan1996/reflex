@@ -32,6 +32,7 @@ import PlanillaTerapeutaMensualRotatorioPage from './pages/reportes/planillaTera
 import ReporteDiariaPage from './pages/reportes/reporteDiaria/ReporteDiariaPage';
 import SeparacionCitaDiarioPage from './pages/reportes/separacionCitaDiario/SeparacionCitaDiarioPage';
 import PlanillaTerapeutasDiariaPage from './pages/reportes/planillaTerapeutasDiaria/PlanillaTerapeutasDiariaPage';
+import Reportes from './pages/reportes/reporte/Reportes';
 
 function App() {
 
@@ -74,6 +75,11 @@ function App() {
             exact
             path={'registro-terapeuta'}
             element={<RegistroTerapeutaPage/>}
+          />
+          <Route
+            exact
+            path={'reportes'}
+            element={<Reportes/>}
           />
           <Route
             exact

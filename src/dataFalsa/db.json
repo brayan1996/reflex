@@ -736,28 +736,6 @@
       "id": 1
     },
     {
-      "id": 2,
-      "CODIGO": 900,
-      "NOMBRE": "MERA SANCHEZ HILMA ",
-      "FECNAC": null,
-      "SEXO": " ",
-      "DIRECC": "",
-      "DPTO": "14",
-      "PROV": 8,
-      "DIST": "",
-      "NROBASE": "",
-      "CASOEX": false,
-      "TELF": " ",
-      "EDAD": 0,
-      "OCUPACION": " ",
-      "OBSERVA": null,
-      "DNI": "",
-      "EMAIL": " ",
-      "TESTIMONIO": false,
-      "RESULTADO": " ",
-      "OBSRESUL": " "
-    },
-    {
       "id": 3,
       "CODIGO": 7553,
       "NOMBRE": "CAPPONI ABELE",
@@ -934,6 +912,24 @@
       "DIST": "",
       "DIRECC": "",
       "id": 11
+    },
+    {
+      "DNI": "22222",
+      "NOMBRE": "Carlitos",
+      "FECNAC": "",
+      "SEXO": "",
+      "RESULTADO": "",
+      "TELF": "",
+      "EMAIL": "",
+      "OCUPACION": "",
+      "TESTIMONIO": "",
+      "OBSERVA": "",
+      "especial": false,
+      "DPTO": "",
+      "PROV": "",
+      "DIST": "",
+      "DIRECC": "",
+      "id": 12
     }
   ]
 }

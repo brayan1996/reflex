@@ -81,12 +81,28 @@ export default function AppMenu() {
           command: () => {
             navigate('/citas');
           }
+        },
+        {
+          label: 'Resultado de la consulta',
+          icon: 'pi pi-fw pi-calendar-plus',
+          to: '/citas',
+          command: () => {
+            navigate('/citas');
+          }
         }
       ]
     },
     {
       label: 'Reportes',
       items: [
+          {
+            label: 'reportes',
+            icon: 'pi pi-fw pi-calendar-plus',
+            to: '/reportes',
+            command: () => {
+              navigate('/reportes');
+            }
+        },
         {
           label: 'Planilla terapeutas - resumen mensual permanente',
           icon: 'pi pi-fw pi-calendar-plus',

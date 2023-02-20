@@ -58,7 +58,7 @@ export const FormCreateCitas = ({dateCalendar}) => {
   return (
     <div className="w-full form1">
         <h1 className="subtitle">Formulario de citas</h1>
-        <div className='w-full h-96 mt-10 mx-auto grid grid-cols-4 gap-4'>
+        <div className='w-full mt-10 mx-auto grid grid-cols-4 gap-4'>
             <TopNamedInput
                 {...fecha}
                 label='Fecha'
@@ -67,14 +67,6 @@ export const FormCreateCitas = ({dateCalendar}) => {
                 {...hora}
                 label='Hora'
             /> 
-            <TopNamedInput
-                {...adelanto}
-                label='Adelanto'
-            />    
-            <TopNamedInput
-                {...saldo}
-                label='Saldo'
-            />  
             <TopNamedInput
                 {...nrDoc}
                 label='Nro Doc'
@@ -92,6 +84,33 @@ export const FormCreateCitas = ({dateCalendar}) => {
                 {...cliente}
                 label='Cliente'
             />
+            {/* checkbox */}
+            <TopNamedInput
+               {...adelanto}
+               label='cita'
+            /> 
+             {/* combobox -- datos en imagen*/}
+           <TopNamedInput
+              {...adelanto}
+              label='Tarifa cita'
+            />  
+            {/* combobox -- datos en imagen*/}
+            <TopNamedInput
+                {...adelanto}
+                label='Tarifa adelanto'
+            />
+             <TopNamedInput
+                {...adelanto}
+                label='Imp adelanto'
+            />   
+            <TopNamedInput
+                {...adelanto}
+                label='Imp final'
+            />  
+            <TopNamedInput
+                {...saldo}
+                label='total'
+            /> 
             {/* <TopNamedInput
                 {...op}
                 label='Op'

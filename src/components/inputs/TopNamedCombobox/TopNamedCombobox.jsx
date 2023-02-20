@@ -12,31 +12,31 @@ function TopNamedCombobox(props) {
   }
 
     /* Filtrado por backend si tiene props.search, en otro caso un filtro contains en frontend */
-    const search = async (value) => {
-      if (props.search) {
-        const result = await props.search(value.query);
-        setFiltered(result);
-      } else {
-        // Internal filter if contains
-        const query = value.query;
-        let filteredItems = [];
-  
-        for (let i = 0; i < props.data?.length ?? 0; i++) {
-          let item = props.data[i];
-          if (props.textField) {
-            const dataNoseque = item?.[props.textField]?.toLowerCase() || ''
-            if (dataNoseque.indexOf(query.toLowerCase()) >= 0) {
-              filteredItems.push(item);
-            }
-          } else {
-            if (item.toLowerCase().indexOf(query.toLowerCase()) >= 0) {
-              filteredItems.push(item);
-            }
+  const search = async (value) => {
+    if (props.search) {
+      const result = await props.search(value.query);
+      setFiltered(result);
+    } else {
+      // Internal filter if contains
+      const query = value.query;
+      let filteredItems = [];
+
+      for (let i = 0; i < props.data?.length ?? 0; i++) {
+        let item = props.data[i];
+        if (props.textField) {
+          const dataNoseque = item?.[props.textField]?.toLowerCase() || ''
+          if (dataNoseque.indexOf(query.toLowerCase()) >= 0) {
+            filteredItems.push(item);
+          }
+        } else {
+          if (item.toLowerCase().indexOf(query.toLowerCase()) >= 0) {
+            filteredItems.push(item);
           }
         }
-      setFiltered(filteredItems);
       }
+    setFiltered(filteredItems);
     }
+  }
 
   useEffect(() => {
     if (props.state !== null) {
@@ -50,12 +50,12 @@ function TopNamedCombobox(props) {
   }, [props.data])
   // Configura el valor inicial
   useEffect(() => {
-    const v = props.value ?? props.defaultValue;
+    const v = props.value ?? props.defaultValue
     if (filtered !== []) {
       const filterKey = props.filterBy || props.dataKey
       const match = filtered.find((item) => item[filterKey] === v);
       if (!match) {
-        setValue(v);
+        setValue(oldValue=> v ? v :  oldValue);
       } else {        
         setValue(match);
       }
