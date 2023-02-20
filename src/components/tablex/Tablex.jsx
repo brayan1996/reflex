@@ -10,6 +10,24 @@ export const Tablex = (props) => {
     const updateTrigger = () => {
         setTrigger(!trigger);
       };
+    const renderHeader = () => {
+      // Chequea si headerBuilder es una función
+      let header = null;
+      if (typeof props.headerBuilder === "function") {
+        //n
+        header = props.headerBuilder({
+          data: dataTablex,
+        });
+      }
+      //n
+      return (
+        <>
+          <div className="table-header">{props.title}</div>
+          {header}
+        </>
+      );
+    }
+    const header = renderHeader();
 
     const columnFactory = () => {
         const  columnConfig  = props.tableConfig;
@@ -82,13 +100,12 @@ export const Tablex = (props) => {
         })
         return columns;
       }
-      const onRowEditComplete1 = (e) => {
-        let _products2 = [...dataTablex];
-        let { newData, index, data } = e;
-
-        _products2[index] = newData
-        if(props.updateData) props.updateData(newData, data)
-        setData(_products2);
+    const onRowEditComplete1 = (e) => {
+      let _products2 = [...dataTablex];
+      let { newData, index, data } = e;
+      _products2[index] = newData
+      if(props.updateData) props.updateData(newData, data)
+      setData(_products2);
     }
     useEffect(() => {
       if(props.changeState) dispatch(props.changeState(dataTablex))
@@ -106,12 +123,14 @@ export const Tablex = (props) => {
             value={dataTablex}
             loading={props.loading}
             emptyMessage="No hay datos para mostrar"
+            header={header}
             selectionMode={props.selectionRow ? "single" : false}
             onSelectionChange={e => props.selectionRow(e.value)}
             editMode={props.rowEditable ? "row" : undefined}
             onRowEditComplete={props.rowEditable ? onRowEditComplete1 : undefined}
             scrollable={props.scrollable}
             scrollHeight={props.heightScroll}
+            filterDisplay={props.filterDisplay}
           >
             {columnFactory()}
           </DataTable>

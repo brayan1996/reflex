@@ -64,3 +64,16 @@ export const createTherapist = (body) => async(dispatch, /* getState */) =>{
         dispatch( finishLoading() )
     }
 }
+
+export const requestTherapistTextSearch = (text) => async(dispatch, /* getState */) =>{
+    dispatch( loadingTerapeutasAction() )
+    try {
+        const { data:therapist } = await Terapeutas.requestTextSearch(text)
+        dispatch( requestTerapeutas(therapist) )
+    } catch (error) {
+        console.log(error)
+    } finally{
+        dispatch( finishLoading() ) 
+    }
+
+}

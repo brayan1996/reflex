@@ -68,3 +68,16 @@ export const createPatient = (body) => async(dispatch, /* getState */) =>{
         dispatch( finishLoadingPatients() )
     }
 }
+
+export const requestPatientsTextSearch = (text) => async(dispatch, /* getState */) =>{
+    dispatch( loadingPatientsAction() )
+    try {
+        const { data:pacientes } = await Pacientes.requestTextSearch(text)
+        dispatch( requestPatients(pacientes) )
+    } catch (error) {
+        console.log(error)
+    } finally{
+        dispatch( finishLoadingPatients() ) 
+    }
+
+}

@@ -1,7 +1,7 @@
 import {  useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import PersonasPage from "../../personas/PersonasPage"
-import { getPatient, deletePatient, updatePatient, createPatient, seleactAPatient } from '../../../store/slices/pacientes';
+import { getPatient, deletePatient, updatePatient, createPatient, seleactAPatient, requestPatientsTextSearch } from '../../../store/slices/pacientes';
 import { setVistaPagina } from '../../../store/slices/reactivos/reactivosSlice';
 import { adaptKeys } from "../../../helpers/transformObjects"
 import { changeKeysLocaltionToInteger } from '../../../helpers/transformArrays';
@@ -54,6 +54,7 @@ const registroPacientesPage = () => {
       columnConfig={columnConfig}
       updateOnePerson={updatePatient}
       createPerson={createPatient}
+      requestText={requestPatientsTextSearch}
     />
   )
 }

@@ -4,9 +4,12 @@ import { Button } from 'primereact/button';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Tablex } from '../../components/tablex/Tablex';
 import { FormPersona } from './components/FormPersona';
+import { InputText } from 'primereact/inputtext';
+import { useState } from 'react';
 
 
 const PersonasPage = (props) => {
+    const [filter, setFilter] = useState('')
     const dispatch = useDispatch()
 
     const select = ( person ) =>{
@@ -35,6 +38,23 @@ const PersonasPage = (props) => {
           </div>
         );
       };
+    
+    const header = () =>{
+      return (
+        <div className="flex justify-content-between">
+            <span className="p-input-icon-left">
+                <i className="pi pi-search" />
+                <InputText 
+                  onChange={e=>{
+                    if(props.requestText) dispatch(props.requestText(e.target.value))
+                  }}
+                  placeholder="DNI O NOMBRE" 
+                />
+            </span>
+        </div>
+    )
+  }
+
   return (
     <>
         <div className='w-full grid grid-cols-3 gap-4 mx-auto'>
@@ -47,6 +67,7 @@ const PersonasPage = (props) => {
                 selectionRow={select}
                 scrollable
                 heightScroll='450px'
+                headerBuilder={header}
             />
           </div>
           <div className="w-full form1 col-span-2">

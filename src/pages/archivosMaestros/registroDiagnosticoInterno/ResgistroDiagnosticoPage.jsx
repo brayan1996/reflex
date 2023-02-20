@@ -8,17 +8,19 @@ const columnConfig = [
   {
     key: "CODIGO",
     name: "Código",
-    width:'15%'
+    width:'25%',
+    "filter": true
   },
   {
     key: "DESCRIP1",
     name: "Nombre",
-    width:'50%'
+    width:'50%',
+    "filter": true
   },
   {
     name: "Elimnar",
     customComponent: "tableButtonDelete",
-    width:'80px'
+    width:'60px'
   }
 ]
 const resgistroDiagnosticoPage = () => {

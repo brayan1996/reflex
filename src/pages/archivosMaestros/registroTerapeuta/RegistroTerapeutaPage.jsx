@@ -1,7 +1,7 @@
 import {  useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import PersonasPage from "../../personas/PersonasPage"
-import { getTherapist, seleactATherapist, deleteTherapist, updateTherapist, createTherapist } from "../../../store/slices/terapeutas"
+import { getTherapist, seleactATherapist, deleteTherapist, updateTherapist, createTherapist, requestTherapistTextSearch } from "../../../store/slices/terapeutas"
 import { setVistaPagina } from '../../../store/slices/reactivos/reactivosSlice';
 import { adaptKeys } from "../../../helpers/transformObjects"
 import { changeKeysLocaltionToInteger } from '../../../helpers/transformArrays';
@@ -39,7 +39,6 @@ const keysValues=  {
 const registroTerapeutaPage = () => {
   const dispatch = useDispatch()
   const { terapeutasData, ATherapist } = useSelector( state=> state.terapeutas )
-  console.log(changeKeysLocaltionToInteger(terapeutasData,'DISTRITO'))
   useEffect(() => {
     dispatch( getTherapist() )
     dispatch( setVistaPagina('registro_terapeuta') )
@@ -54,6 +53,7 @@ const registroTerapeutaPage = () => {
       columnConfig={columnConfig}
       updateOnePerson={updateTherapist}
       createPerson={createTherapist}
+      requestText={requestTherapistTextSearch}
     />
   )
 }

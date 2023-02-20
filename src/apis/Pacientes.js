@@ -17,5 +17,8 @@ export default{
     },
     deletePatient(id){
         return Api.delete(`${END_POINT}/${id}`)
+    },
+    requestTextSearch(text){
+        return Api.get(`${END_POINT}?q=${text}`)
     }
 }

@@ -4,26 +4,6 @@ import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Tablex } from '../../components/tablex/Tablex';
 import CreateAndUpdateEnfermedad from './components/CreateAndUpdateEnfermedad';
 
-// const columnConfig = [
-//     {
-//       key: "code",
-//       name: "Código",
-//       width:'15%'
-//     },
-//     {
-//       key: "name",
-//       name: "Nombre",
-//       width:'50%'
-//     },
-//     {
-//       name: "Elimnar",
-//       customComponent: "tableButtonDelete",
-//       width:'80px'
-//     }
-//   ]
-
- 
-
 export const EnfermedadesPage = ({
   diseasesAllData,
   columnConfig,
@@ -75,6 +55,7 @@ export const EnfermedadesPage = ({
                 selectionRow={select}
                 scrollable
                 heightScroll='380px'
+                filterDisplay='row'
             />
           </div>
           <CreateAndUpdateEnfermedad
