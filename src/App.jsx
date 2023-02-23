@@ -9,12 +9,12 @@ import 'primeflex/primeflex.css';
 import './assets/demo/flags/flags.css';
 import './assets/demo/Demos.scss';
 import './assets/layout/layout.scss';
-import './App.css'
+import './App.css';
 //PAGES
-import { ConsultaCitas } from './pages/citas/ConsultaCitas'
+import { ConsultaCitas } from './pages/citas/ConsultaCitas';
 import { EnfermedadesPage } from './pages/enfermedades/EnfermedadesPage';
-import Login from './pages/Login'
-import Home from './pages/Home'
+import Login from './pages/Login';
+import Home from './pages/Home';
 import PersonasPage from './pages/personas/PersonasPage';
 import ResultadoConsulta from './pages/resultadoConsulta/ResultadoConsulta';
 import ResgistroDiagnosticoPage from './pages/archivosMaestros/registroDiagnosticoInterno/ResgistroDiagnosticoPage';
@@ -36,61 +36,44 @@ import PlanillaTerapeutasDiariaPage from './pages/reportes/planillaTerapeutasDia
 import Reportes from './pages/reportes/reporte/Reportes';
 
 function App() {
-
   return (
-    <div>
+    <>
       <Routes>
         <Route exact path={'/'} element={<Login />} />
         <Route exact path={'/'} element={<Home />}>
-          <Route
-            exact
-            path={'citas'}
-            element={<ConsultaCitas/>}
-          />
-          <Route
-            exact
-            path={'enfermedades'}
-            element={<EnfermedadesPage/>}
-          />
-          <Route
-            exact
-            path={'personas'}
-            element={<PersonasPage/>}
-          />
+          <Route exact path={'citas'} element={<ConsultaCitas />} />
+          <Route exact path={'enfermedades'} element={<EnfermedadesPage />} />
+          <Route exact path={'personas'} element={<PersonasPage />} />
           <Route
             exact
             path={'resgistro-diagnostico'}
-            element={<ResgistroDiagnosticoPage/>}
+            element={<ResgistroDiagnosticoPage />}
           />
           <Route
             exact
             path={'registro-diagnostico-medico'}
-            element={<RegistroDiagnosticoMedicoPage/>}
+            element={<RegistroDiagnosticoMedicoPage />}
           />
           <Route
             exact
             path={'registro-pacientes'}
-            element={<RegistroPacientesPage/>}
+            element={<RegistroPacientesPage />}
           />
           <Route
             exact
             path={'registro-terapeuta'}
-            element={<RegistroTerapeutaPage/>}
+            element={<RegistroTerapeutaPage />}
           />
-          <Route
-            exact
-            path={'reportes'}
-            element={<Reportes/>}
-          />
+          <Route exact path={'reportes'} element={<Reportes />} />
           <Route
             exact
             path={'resultado-consulta'}
-            element={<ResultadoConsulta/>}
+            element={<ResultadoConsulta />}
           />
         </Route>
       </Routes>
-    </div>
-  )
+    </>
+  );
 }
 
-export default App
+export default App;

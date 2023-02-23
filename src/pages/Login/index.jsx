@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // PrimeReact
-import imageReflex from './reflex.png'
+import imageReflex from '../../assets/logo.jpeg';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
@@ -14,12 +14,12 @@ export default function Login() {
     <div className={`containerLogin`}>
       <div className={`imgLogin`}>
         <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: '160px',
-          }}
+        // style={{
+        //   display: 'flex',
+        //   justifyContent: 'center',
+        //   alignItems: 'center',
+        //   // marginTop: '160px',
+        // }}
         >
           <img
             src={imageReflex}
@@ -48,7 +48,7 @@ export default function Login() {
               feedback={false}
             />
           </div>
-          <Button type='submit' label={'Ingresar'} className='mt-2' />
+          <Button type='submit' label={'Ingresar'} className='mt-5' />
         </form>
       </div>
     </div>
