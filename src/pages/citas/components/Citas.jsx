@@ -5,7 +5,7 @@ import { Button }                               from 'primereact/button';
 import { ConfirmDialog, confirmDialog }         from 'primereact/confirmdialog';
 import { useDispatch, useSelector }             from 'react-redux';
 import { Toast }                                from 'primereact/toast';
-import { requestDates, modifyDate, changeStateCitas, deleteDate, setCitasSelected } from "../../../store/slices/citas";
+import { requestDates, modifyDate, changeStateCitas, deleteDate, setCitasSelected, requestCitasTextSearch } from "../../../store/slices/citas";
 import { setHistoryPersonSelected }             from "../../../store/slices/reactivos/reactivosSlice";
 import { getHistorial }                         from "../../../store/slices/historial";
 import { Tablex }                               from "../../../components/tablex/Tablex";
@@ -224,6 +224,23 @@ export const Citas = ({value}) => {
         />
       )
     }
+
+    const header = () =>{
+      return (
+        <div className="flex justify-content-between">
+            <span className="p-input-icon-left">
+                <i className="pi pi-search" />
+                <InputText 
+                  onChange={e=>{
+                     dispatch(requestCitasTextSearch(e.target.value, value))
+                  }}
+                  placeholder="DATO DE LA CITA" 
+                />
+            </span>
+        </div>
+      )
+    }
+
     const select = (selected) => {
       dispatch( setCitasSelected(selected) )
       dispatch( setHistoryPersonSelected(selected) )
@@ -256,6 +273,7 @@ export const Citas = ({value}) => {
             changeState={changeStateCitas}
             tableButtonDelete={tableButtonDelete}
             selectionRow={select}
+            headerBuilder={header}
           />
       </div>
     );

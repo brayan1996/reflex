@@ -55,7 +55,7 @@ export const FormPersona = (props) => {
     
   return (
     <div className="w-full form1">
-        <p className="title">Formulario persona</p>
+        <p className="title">{props.title || 'personas'}</p>
         <div className='w-10/12 mt-10 mx-auto grid grid-cols-3 gap-4'>
             <TopNamedInput
                 {...nroDoc}

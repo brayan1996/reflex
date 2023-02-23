@@ -52,8 +52,8 @@ const PersonasPage = (props) => {
                 />
             </span>
         </div>
-    )
-  }
+      )
+    }
 
   return (
     <>
@@ -72,17 +72,19 @@ const PersonasPage = (props) => {
           </div>
           <div className="w-full form1 col-span-2">
             <TabView className='mt-5'>
-                <TabPanel header="Actualizar Persona" rightIcon="pi pi-user-plus"   headerClassName='w-1/2 text-lg'>
+                <TabPanel header={ `Actualizar ${props.title || 'personas'}` }rightIcon="pi pi-user-plus"   headerClassName='w-1/2 text-lg'>
                     <FormPersona
                         action='Actualizar'
                         dataAPerson={props.dataAPerson}
                         updateOnePerson={props.updateOnePerson}
+                        title={props.title}
                     />
                 </TabPanel>
-                <TabPanel header="Crear Persona" rightIcon="pi pi-user"  headerClassName='w-1/2 text-lg'>
+                <TabPanel header={`Crear ${props.title || 'personas'}`} rightIcon="pi pi-user"  headerClassName='w-1/2 text-lg'>
                     <FormPersona
                         action='Crear'
                         createPerson={props.createPerson}
+                        title={props.title}
                     />
                 </TabPanel>
             </TabView>

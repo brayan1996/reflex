@@ -115,7 +115,7 @@ export default function AppMenu() {
               return (
                 <div key={index}>
                   <li>
-                    <p>{item.label}</p>
+                    <p className='font-bold'>{item.label}</p>
                   </li>
                   <ul>
                     {item.items

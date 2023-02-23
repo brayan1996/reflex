@@ -23,8 +23,36 @@ const tarifaAdelantoOptions =[
     {code:'a20',name:'Adelanto 20'},
     {code:'a30',name:'Adelanto 30'},
     {code:'r',name:'Reserva'},
-]   
+] 
 
+const hoursDate = [
+    {hour:'7:00 AM', value:'7:00'},
+    {hour:'7:30 AM', value:'7:30'},
+    {hour:'8:00 AM', value:'8:00'},
+    {hour:'8:30 AM', value:'8:30'},
+    {hour:'9:00 AM', value:'9:00'},
+    {hour:'9:30 AM', value:'9:30'},
+    {hour:'10:00 AM', value:'10:00'},
+    {hour:'10:30 AM', value:'10:30'},
+    {hour:'11:00 AM', value:'11:00'},
+    {hour:'11:30 AM', value:'11:30'},
+    {hour:'12:00 M', value:'12:00'},
+    {hour:'12:30 PM', value:'12:30'},
+    {hour:'1:00 PM', value:'13:00'},
+    {hour:'1:30 PM', value:'13:30'},
+    {hour:'2:00 PM', value:'14:00'},
+    {hour:'2:30 PM', value:'14:30'},
+    {hour:'3:00 PM', value:'15:00'},
+    {hour:'3:30 PM', value:'15:30'},
+    {hour:'4:00 PM', value:'16:00'},
+    {hour:'4:30 PM', value:'16:30'},
+    {hour:'5:00 PM', value:'17:00'},
+    {hour:'5:30 PM', value:'17:30'},
+    {hour:'6:00 PM', value:'18:00'},
+    {hour:'6:30 PM', value:'18:30'},
+    {hour:'7:00 PM', value:'19:00'},
+    {hour:'7:30 PM', value:'19:30'},
+  ]
 const d = new Date()
 const fechaActualValue= `${d.getFullYear()}-${('0' + (d.getMonth() + 1)).slice(-2)}-${('0' + d.getDate()).slice(-2)}`
 
@@ -32,9 +60,9 @@ export const FormCreateCitas = ({dateCalendar}) => {
     const [time, setTime] = useState({fecha:'',hora:''})
     const [cita, setCita] = useState({})
     const [numeroDocumento, setNumeroDocumento] = useState('')
+    const [hora, setHora] = useState('7:00')
     const [isOpen, setIsOpen] = useState(false)
     const fecha = useField({type:'date',defaultValue:time.fecha})
-    const hora = useField({type:'time',defaultValue:time.hora})
     const nrDoc = useField({type:'text'})
     const cliente = useField({type:'text'})
     const adelanto = useField({type:'number'})
@@ -117,11 +145,15 @@ export const FormCreateCitas = ({dateCalendar}) => {
             <TopNamedInput
                 {...fecha}
                 label='Fecha'
-            />    
-            <TopNamedInput
-                {...hora}
+            />  
+            <TopNamedCombobox
                 label='Hora'
-            /> 
+                data={hoursDate}
+                dataKey="value"
+                textField="hour"
+                value={hora}
+                onSelect={ e => setHora(e.value) }
+            />
             <TopNamedInput
                 {...nrDoc}
                 label='Nro Doc'

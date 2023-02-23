@@ -1,4 +1,4 @@
-import { setDates, loadingDates } from "./citasSlice";
+import { setDates, loadingDates, finishLoading } from "./citasSlice";
 import Citas from "../../../apis/Citas";
 import Pacientes from "../../../apis/Pacientes";
 
@@ -30,4 +30,18 @@ export const deleteDate = (body) => async( dispatch ) =>{
 export const createDate = (body) => async(dispatch)=>{
     await Citas.createAppointment(body)
     dispatch( requestDates(body.date) )
+}
+
+export const requestCitasTextSearch = (text, fecha) => async(dispatch, /* getState */) =>{
+    dispatch( loadingDates() )
+    try {
+        const { data:allCitas } = await Citas.requestTextSearch(text)
+        const citasSearch = allCitas.filter( cita=> cita.date === fecha )
+        dispatch( setDates({allCitas:citasSearch}) )
+    } catch (error) {
+        console.log(error)
+    } finally{
+        dispatch( finishLoading() ) 
+    }
+
 }

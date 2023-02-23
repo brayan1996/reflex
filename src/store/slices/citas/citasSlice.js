@@ -10,6 +10,9 @@ export const citasSlice = createSlice({
         loadingDates:(state)=>{
             state.isLoading = true
         },
+        finishLoading:(state)=>{
+            state.isLoading = false
+        },
         setDates:(state, action) => {
             state.citasData = action.payload.allCitas
             state.isLoading = false
@@ -26,4 +29,4 @@ export const citasSlice = createSlice({
 
 
 // Action creators are generated for each case reducer function
-export const { setDates, loadingDates, changeStateCitas, setCitasSelected } =  citasSlice.actions;
+export const { setDates, loadingDates, changeStateCitas, setCitasSelected, finishLoading } =  citasSlice.actions;

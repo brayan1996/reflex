@@ -55,6 +55,7 @@ const registroPacientesPage = () => {
       updateOnePerson={updatePatient}
       createPerson={createPatient}
       requestText={requestPatientsTextSearch}
+      title='Pacientes'
     />
   )
 }

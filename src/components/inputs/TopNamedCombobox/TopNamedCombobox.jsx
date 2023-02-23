@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { AutoComplete } from "primereact/autocomplete";
-import { useEffect, useState,useLayoutEffect } from "react";
+import { useEffect, useState } from "react";
 import "./TopNamedCombobox.css";
 const textSpecial = {color:'rgb(30 64 175)' , fontSize:'1.15rem' ,fontWeight: 700}
 function TopNamedCombobox(props) {

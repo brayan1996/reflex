@@ -15,5 +15,8 @@ export default{
     },
     createAppointment(body){
         return Api.post(END_POINT, body)
+    },
+    requestTextSearch(text){
+        return Api.get(`${END_POINT}?q=${text}`)
     }
 }
