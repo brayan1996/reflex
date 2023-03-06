@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from 'react';
 import { createPatient } from "../../../store/slices/pacientes";
 import { setVistaPagina } from '../../../store/slices/reactivos';
@@ -24,6 +24,7 @@ const FormPersonaModal = (props) => {
 	const [close, setClose] = useState(false)
   const [nombre, setnombre] = useState('')
   const [isTherePerson, setIsTherePerson] = useState(true)
+  const {loadingPatients} = useSelector( state=> state.pacientes )
   const dispatch = useDispatch()
   
   const closeModal = () =>{
@@ -34,15 +35,17 @@ const FormPersonaModal = (props) => {
     const nroDoc = props.nroDoc || props.options?.rowData.doc
     return (await Pacientes.requestAPatient(nroDoc))?.data.shift()?.NOMBRE || ''
   }
+
+  const setAName = async() =>{
+    const namePerson = await getAName()
+    if(namePerson){
+      setnombre(namePerson)
+      setIsTherePerson(true)
+    }else setIsTherePerson(false) 
+  }
   useEffect(() => {
-    (async function(){
-      const namePerson = await getAName()
-      if(namePerson){
-        setnombre(namePerson)
-        setIsTherePerson(true)
-      }else setIsTherePerson(false) 
-    })()
-  }, [props.nroDoc])
+    setAName()
+  }, [props.nroDoc, loadingPatients])
   
   useEffect(() => {
 		return setClose(false);

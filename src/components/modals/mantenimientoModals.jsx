@@ -108,13 +108,7 @@ function ModalMantenimiento(props) {
         contentLabel={`${props.label} Modal`}
       >
         <div className="text-center bg-indigo-700 text-white absolute top-0 left-0 w-full px-0 mx-0">
-          <h1 className="title pt-4 pb-3 text-white">{props.label?.toUpperCase()}</h1>
-
-          {/* <div className="absolute w-full h-full text-black top-0">
-            <div className="absolute w-1/2 h-full d-flex justify-center items-center right-0">
-              {props.headerBadges}
-            </div>
-          </div> */}
+          {props.label && <h1 className="title pt-4 pb-3 text-white">{props.label?.toUpperCase()}</h1>}
 
           <div className="absolute right-0 text-white top-0 mr-1 mt-1">
             <button

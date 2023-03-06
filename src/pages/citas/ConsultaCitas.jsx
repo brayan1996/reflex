@@ -10,9 +10,8 @@ import { useState } from 'react';
 export const ConsultaCitas = ({ pagina }) => {
   const { value, getNormalDate } = useCalendar();
   const [activeIndex, setActiveIndex] = useState(0);
-  console.log(activeIndex);
   return (
-    <div className='w-full card'>
+    <div className='width-extra card'>
       <div className='mx-auto w-1/3'>
         <Calendar
           value={value}

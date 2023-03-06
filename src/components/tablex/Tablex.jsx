@@ -1,7 +1,10 @@
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect }                from 'react';
+import { DataTable }                          from 'primereact/datatable';
+import { Column }                             from 'primereact/column';
+import { useDispatch }                        from 'react-redux';
+import { Button }                             from 'primereact/button';
+import { builObjectWithArrayKey }             from '../../helpers/transformArrays';
+
 
 export const Tablex = (props) => {
     const [dataTablex, setData] = useState([])
@@ -10,6 +13,21 @@ export const Tablex = (props) => {
     const updateTrigger = () => {
         setTrigger(!trigger);
       };
+
+    const addElementButton = () =>{
+      return(
+        <Button
+          label='Agregar Elemento'
+          icon='pi pi-plus'
+          className="p-button-success mr-2"
+          onClick={()=>{
+            const newObject = builObjectWithArrayKey(props.tableConfig, 'key')
+            setData([{action:'add',...newObject},...dataTablex])
+          }}
+        />
+      )
+    }
+
     const renderHeader = () => {
       // Chequea si headerBuilder es una función
       let header = null;
@@ -22,7 +40,9 @@ export const Tablex = (props) => {
       //n
       return (
         <>
-          <div className="table-header">{props.title}</div>
+          {/* {props.addElement && props.addElement()} */}
+          {props.addElement && addElementButton()}
+          <div className="table-header mt-2">{props.title}</div>
           {header}
         </>
       );
@@ -55,11 +75,19 @@ export const Tablex = (props) => {
                     dataTablex
                   );
                 }
-              : undefined;
+              : (column.customComponent === 'tableButtonSave')
+              ? tableButtonSave()
+              : undefined
             const componentEdit = props[column.editComponent]
-              ? (options) => 
-              props[column.editComponent](
-                options
+              ? (options) =>(
+                props[column.editComponent](
+                  options,
+                  (newRowData) => {
+                    const newData = [...dataTablex];
+                    newData[options.rowIndex] = newRowData;
+                    setData(newData);
+                  }
+                )
               )
               : undefined;
 
@@ -75,6 +103,7 @@ export const Tablex = (props) => {
                   }
                 )
               : undefined;
+
             return(
                 <Column
                     filter={column.filter}
@@ -90,27 +119,33 @@ export const Tablex = (props) => {
                     editor={componentEdit}
                     style={{
                       flexBasis: column.width,
-                      // padding: `${props.verticalPadding ?? 12}px 5px`,
-                      // paddingLeft: i === 0 ? "20px" : "5px",
-                      //ocultar todo el column sugun se requiera
-                      // display: column.hidden ? "none" : "table-cell",
+                      fontSize: props.propsStyle?.fontSize || '10px'
                     }}
               />
             )
         })
         return columns;
       }
+    
     const onRowEditComplete1 = (e) => {
       let _products2 = [...dataTablex];
       let { newData, index, data } = e;
+      newData = {...newData, ...data}
       _products2[index] = newData
-      if(props.updateData) props.updateData(newData, data)
+      if(!newData) return
+      if(props.updateData || props.createData){
+        if(newData.action){
+          const {action, ...bodySinAction} = newData
+          props.createData(bodySinAction)
+        }else  props.updateData(newData, data)
+      }
       setData(_products2);
     }
+    
     useEffect(() => {
       if(props.changeState) dispatch(props.changeState(dataTablex))
     }, [dataTablex])
-      
+     
     useEffect(() => {
         setData(props.data)
     }, [props.data])

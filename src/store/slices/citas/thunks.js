@@ -1,6 +1,7 @@
 import { setDates, loadingDates, finishLoading } from "./citasSlice";
 import Citas from "../../../apis/Citas";
 import Pacientes from "../../../apis/Pacientes";
+import { deleteElementsDuplicateArrayOfObjects } from "../../../helpers/transformArrays";
 
 export const requestDates = (dates) => {
     return async( dispatch ) => {
@@ -35,8 +36,17 @@ export const createDate = (body) => async(dispatch)=>{
 export const requestCitasTextSearch = (text, fecha) => async(dispatch, /* getState */) =>{
     dispatch( loadingDates() )
     try {
-        const { data:allCitas } = await Citas.requestTextSearch(text)
-        const citasSearch = allCitas.filter( cita=> cita.date === fecha )
+        const req1 = Citas.requestTextSearch(text)
+        const req2 = Pacientes.requestTextSearch(text)
+        const [{data:allCitas}, {data:pacientes}] = await Promise.all([req1, req2])
+        const citasDePaciente = ( await Promise.all(pacientes.map( async paciente=> ( await Citas.requestTextSearch(paciente.DNI) ).data)) ).flat()
+        const citasDelPacienteConNmbre = deleteElementsDuplicateArrayOfObjects(
+            [...citasDePaciente, ...allCitas].map( citaPaciente=>{
+            const name = pacientes.find( paciente => paciente.DNI === citaPaciente.doc )?.NOMBRE || ''
+            return({...citaPaciente, cliente:name})
+            } )
+        )
+        const citasSearch = citasDelPacienteConNmbre.filter( cita=> cita.date === fecha )
         dispatch( setDates({allCitas:citasSearch}) )
     } catch (error) {
         console.log(error)

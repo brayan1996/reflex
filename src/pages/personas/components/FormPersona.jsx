@@ -35,10 +35,7 @@ export const FormPersona = (props) => {
     const { vistaActual } = useSelector( state=>state.reactivos )
     const dispatch = useDispatch(); 
     const savePerson = () =>{
-        if((!nroDoc.value || nroDoc.value ==='') && (!nombre.value || nombre.value ==='')){
-            console.log('no existe')
-            return
-        } 
+        if((!nroDoc.value || nroDoc.value ==='') && (!nombre.value || nombre.value ==='')) return 
         if(props.action === 'Actualizar'){
             dispatch( props.updateOnePerson(props.dataAPerson.id,{...personaData, ...direccionData}) )
         }else{

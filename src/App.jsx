@@ -21,18 +21,18 @@ import ResgistroDiagnosticoPage from './pages/archivosMaestros/registroDiagnosti
 import RegistroDiagnosticoMedicoPage from './pages/archivosMaestros/registroDiagnosticoMedico/RegistroDiagnosticoMedicoPage';
 import RegistroPacientesPage from './pages/archivosMaestros/registroPacientes/RegistroPacientesPage';
 import RegistroTerapeutaPage from './pages/archivosMaestros/registroTerapeuta/RegistroTerapeutaPage';
-import AtencionDiariaPacientePage from './pages/reportes/atencionDiariaPaciente/AtencionDiariaPacientePage';
-import AtencionDiariaTerapeutaPage from './pages/reportes/atencionDiariaTerapeuta/AtencionDiariaTerapeutaPage';
-import CobranzaPage from './pages/reportes/cobranza/CobranzaPage';
-import DatosPaciente from './pages/reportes/datosPaciente/DatosPaciente';
-import EstadisticaPacienteResultadoPage from './pages/reportes/estadisticaPacienteResultado/EstadisticaPacienteResultadoPage';
-import EstadisticaPacientesEdadPage from './pages/reportes/estadisticaPacientesEdad/EstadisticaPacientesEdadPage';
-import EstadisticaPacientesSexoPage from './pages/reportes/estadisticaPacientesSexo/EstadisticaPacientesSexoPage';
-import PlanillaTerapeutaMensualPage from './pages/reportes/planillaTerapeutaMensual/PlanillaTerapeutaMensualPage';
-import PlanillaTerapeutaMensualRotatorioPage from './pages/reportes/planillaTerapeutaMensualRotatorio/PlanillaTerapeutaMensualRotatorioPage';
-import ReporteDiariaPage from './pages/reportes/reporteDiaria/ReporteDiariaPage';
-import SeparacionCitaDiarioPage from './pages/reportes/separacionCitaDiario/SeparacionCitaDiarioPage';
-import PlanillaTerapeutasDiariaPage from './pages/reportes/planillaTerapeutasDiaria/PlanillaTerapeutasDiariaPage';
+// import AtencionDiariaPacientePage from './pages/reportes/atencionDiariaPaciente/AtencionDiariaPacientePage';
+// import AtencionDiariaTerapeutaPage from './pages/reportes/atencionDiariaTerapeuta/AtencionDiariaTerapeutaPage';
+// import CobranzaPage from './pages/reportes/cobranza/CobranzaPage';
+// import DatosPaciente from './pages/reportes/datosPaciente/DatosPaciente';
+// import EstadisticaPacienteResultadoPage from './pages/reportes/estadisticaPacienteResultado/EstadisticaPacienteResultadoPage';
+// import EstadisticaPacientesEdadPage from './pages/reportes/estadisticaPacientesEdad/EstadisticaPacientesEdadPage';
+// import EstadisticaPacientesSexoPage from './pages/reportes/estadisticaPacientesSexo/EstadisticaPacientesSexoPage';
+// import PlanillaTerapeutaMensualPage from './pages/reportes/planillaTerapeutaMensual/PlanillaTerapeutaMensualPage';
+// import PlanillaTerapeutaMensualRotatorioPage from './pages/reportes/planillaTerapeutaMensualRotatorio/PlanillaTerapeutaMensualRotatorioPage';
+// import ReporteDiariaPage from './pages/reportes/reporteDiaria/ReporteDiariaPage';
+// import SeparacionCitaDiarioPage from './pages/reportes/separacionCitaDiario/SeparacionCitaDiarioPage';
+// import PlanillaTerapeutasDiariaPage from './pages/reportes/planillaTerapeutasDiaria/PlanillaTerapeutasDiariaPage';
 import Reportes from './pages/reportes/reporte/Reportes';
 
 function App() {

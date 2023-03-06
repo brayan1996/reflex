@@ -5,7 +5,7 @@ import { Button }                               from 'primereact/button';
 import { ConfirmDialog, confirmDialog }         from 'primereact/confirmdialog';
 import { useDispatch, useSelector }             from 'react-redux';
 import { Toast }                                from 'primereact/toast';
-import { requestDates, modifyDate, changeStateCitas, deleteDate, setCitasSelected, requestCitasTextSearch } from "../../../store/slices/citas";
+import { requestDates, modifyDate, changeStateCitas, deleteDate, setCitasSelected, requestCitasTextSearch, createDate } from "../../../store/slices/citas";
 import { setHistoryPersonSelected }             from "../../../store/slices/reactivos/reactivosSlice";
 import { getHistorial }                         from "../../../store/slices/historial";
 import { Tablex }                               from "../../../components/tablex/Tablex";
@@ -13,7 +13,7 @@ import { PersonModal }                          from "../components/PersonModal"
 import FormPersonaModal                         from "./FormPersonaModal";
 import TopNamedCombobox                         from "../../../components/inputs/TopNamedCombobox/TopNamedCombobox";
 import { maximunNumberInArray }                 from "../../../helpers/transformArrays";
-import { day } from "../../../helpers/getDateNow";
+import { day }                                  from "../../../helpers/getDateNow";
 
 const columnConfig = [
     {
@@ -38,29 +38,54 @@ const columnConfig = [
     {
       key: "dateCheck",
       name: "Cita",
-      customComponent: "dateCheckComponent"
+      customComponent: "dateCheckComponent",
+      editComponent: "dateCheckComponentEdit"
+    },
+     {
+      key: "cTodoCheck",
+      name: "CTodo",
+      customComponent: "dateCheckComponent",
+      editComponent: "dateCheckComponentEdit"
     },
     {
+      key: "adelantoCheck",
       name: "Adelanto",
+      customComponent: "dateCheckComponent",
+      editComponent: "dateCheckComponentEdit"
+    },
+    {
+      name: "Importe1",
       key: "advancement",
       editComponent:"editInput"
     },
     {
-      key: "balance",
+      key: "saldoCheck",
       name: "Saldo",
+      customComponent: "dateCheckComponent",
+      editComponent: "dateCheckComponentEdit"
+    },
+    {
+      key: "balance",
+      name: "Importe2", 
       editComponent:"editInput"
     },
     {
-      name: "Total",
-      key: "total"
+      key: "socialCheck",
+      name: "Social",
+      customComponent: "dateCheckComponent",
+      editComponent: "dateCheckComponentEdit"
     },
     {
-      name: "#",
-      key: "targetTicketNumber"
+      name: "Operación",
+      key: "op"
     },
     {
       name: "Observación",
       key: "obs"
+    },
+    {
+      name: "#",
+      key: "targetTicketNumber"
     },
     {
       "name": "Editar",
@@ -79,6 +104,8 @@ const columnConfig = [
       customComponent: "reciboComponent"
     }
   ]
+
+  
 const hoursDate = [
   {hour:'7:00 AM', value:'7:00'},
   {hour:'7:30 AM', value:'7:30'},
@@ -107,6 +134,9 @@ const hoursDate = [
   {hour:'7:00 PM', value:'19:00'},
   {hour:'7:30 PM', value:'19:30'},
 ]
+
+
+
 export const Citas = ({value}) => {
     const [nroDoc, setNroDoc] = useState()
     const { citasData, isLoading } = useSelector( state=> state.citas )
@@ -123,6 +153,17 @@ export const Citas = ({value}) => {
       });
     };
     
+    const checksOperations = (key, citaData) =>{
+      const operations = {
+        'cTodoCheck': () => ({advancement:50, balance:0, op:'Cancelo todo'}),
+        'adelantoCheck': () =>({advancement:30, balance:0, op:'Adelanto 30'}),
+        'saldoCheck': () =>({balance:50 - parseInt(citaData.advancement || 0), op:'Saldo'}),
+        'socialCheck': () =>({advancement:0, balance:0, op:'Operación social'}),
+        'dateCheck':()=>({})
+      }
+      return operations[key]()
+    }
+
     const updateData = async( newData, oldData ) => {
       newData.advancement = parseInt(newData.advancement) || 0
       newData.balance = parseInt(newData.balance) || 0
@@ -131,18 +172,44 @@ export const Citas = ({value}) => {
       dispatch( modifyDate(newData) )
     }
 
-    const dateCheckComponent = ( row ) => {
+    const createData = async(body) => {
+      body.date = value
+      dispatch(createDate(body))
+    }
+
+    const dateCheckComponent = ( row, _, key, setRow ) => {
       return(
         <Checkbox
-          checked={row.dateCheck}
-          onChange={()=>{
-            const newData = {...row,dateCheck:!row.dateCheck}
+        checked={row[key]}
+        onChange={(e) => {
+          if(row.action === 'add'){
+            let newData = {...row, [key]:e.target.checked}
+            if(e.target.checked) newData = {...newData,...checksOperations(key, row)}
+            setRow(newData)
+          }else{ 
+            let newData = {...row,[key]:!row[key]}
+            if(!row[key]) newData = {...newData,...checksOperations(key, row) }
             dispatch(modifyDate(newData))
+          }
           }}
         />
       )
     }
 
+    const dateCheckComponentEdit = ( options, setRow ) => {
+      return(
+        <Checkbox
+        checked={options.rowData[options.field]}
+        onChange={(e) => {
+          let newData = {...options.rowData, [options.field]:e.target.checked}
+          if(e.target.checked) newData = {...newData,...checksOperations(options.field, options.rowData)}
+          setRow(newData)
+          options.editorCallback(e.target.checked)
+          }}
+        />
+      )
+    }
+    
     const tableButtonDelete = (rowData) => {
       return (
         <div className='actions'>
@@ -164,6 +231,7 @@ export const Citas = ({value}) => {
         />
       )
     }
+    
     const modalInput = (options) => {
       return(
         <FormPersonaModal
@@ -174,23 +242,29 @@ export const Citas = ({value}) => {
     }
 
     const editInput = (options) => {
+      const widthInput ={
+        'doc':'w-9',
+        'advancement':'w-5',
+        'balance':'w-5'
+      }
       return (
-        <InputText 
-          type="text"
-          value={options.value}
-          onChange={(e) => options.editorCallback(e.target.value)}
-          onBlur={(e)=>{
-            if(options.field === 'doc') setNroDoc(e.target.value)
-          }}
-          
-        />
+        <div className="sizes">
+          <InputText 
+            type="text"
+            className={`block mb-2 ${widthInput[options.field]}`}
+            value={options.value}
+            onChange={(e) =>options.editorCallback(e.target.value)}
+            onBlur={(e)=>{
+              if(options.field === 'doc') setNroDoc(e.target.value)
+            }}  
+          />
+        </div>
       )
     }
 
     const multiHourComponent = (options) => {
       return (
         <TopNamedCombobox
-            // label='Terapeuta'
             data={hoursDate}
             dataKey="value"
             textField="hour"
@@ -242,9 +316,11 @@ export const Citas = ({value}) => {
     }
 
     const select = (selected) => {
-      dispatch( setCitasSelected(selected) )
-      dispatch( setHistoryPersonSelected(selected) )
-      dispatch( getHistorial({nroDoc:selected.doc, name:selected.cliente}) )
+      if(selected){
+        dispatch( setCitasSelected(selected) )
+        dispatch( setHistoryPersonSelected(selected) )
+        dispatch( getHistorial({nroDoc:selected.doc, name:selected.cliente}) )
+      }
     }
 
     useEffect(() => {
@@ -261,6 +337,7 @@ export const Citas = ({value}) => {
             tableConfig={columnConfig}
             data={citasData}
             dateCheckComponent={dateCheckComponent}
+            dateCheckComponentEdit={dateCheckComponentEdit}
             personModal={personModal}
             editInput={editInput}
             multiHourComponent={multiHourComponent}
@@ -270,10 +347,13 @@ export const Citas = ({value}) => {
             rowEditable
             loading={isLoading}
             updateData={updateData}
+            createData={createData}
             changeState={changeStateCitas}
             tableButtonDelete={tableButtonDelete}
             selectionRow={select}
             headerBuilder={header}
+            addElement
+            propsStyle={{fontSize:'13px'}}
           />
       </div>
     );
