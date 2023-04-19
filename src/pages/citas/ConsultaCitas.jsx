@@ -59,3 +59,4 @@ export const ConsultaCitas = ({ pagina }) => {
     </div>
   );
 };
+export default ConsultaCitas

@@ -1123,5 +1123,22 @@
       "DIRECC": "",
       "id": 17
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "brayan.ha.1996@gmail.com",
+      "nameLogin": "Brayan",
+      "password": "1"
+    },
+    {
+      "id": 2
+    },
+    {
+      "email": "ventas9@sisfactepro.com",
+      "password": "2",
+      "nameLogin": "Carlos",
+      "id": 3
+    }
   ]
 }

@@ -1,14 +1,14 @@
 import { toast } from 'react-toastify';
 
 const toastConfig = {
-	position: 'bottom-right', // top-left, top-right, top-center, bottom-left, bottom-right, bottom-center
-	autoClose: 4000,
+	position: "top-right",
+	autoClose: 3000,
 	hideProgressBar: false,
 	closeOnClick: true,
 	pauseOnHover: true,
 	draggable: true,
 	progress: undefined,
-	theme: 'colored',
+	theme: "colored",
 };
 
 export default {

@@ -1,4 +1,4 @@
-import React from 'react';
+import {  Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch } from "react-redux"
 // import AppFooter from './Menu/AppFooter';
@@ -8,6 +8,7 @@ import { CSSTransition } from 'react-transition-group';
 import { useState, useEffect } from 'react';
 import { getAllDiseases } from '../../store/slices/enfermedades';
 import { requestPersons } from '../../store/slices/personas';
+import Loading from '../../components/loading/loading';
 import './styles.scss';
 
 export default function Home() {
@@ -25,9 +26,11 @@ export default function Home() {
       </div>
 
       <div className='layout-main-container'>
-        <div className='layout-main'>
-          <Outlet />
-        </div>
+        <Suspense fallback={<Loading/>}>
+          <div className='layout-main'>
+            <Outlet />
+          </div>
+        </Suspense>
         {/* <AppFooter /> */}
       </div>
       <CSSTransition

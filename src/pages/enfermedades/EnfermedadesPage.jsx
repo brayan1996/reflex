@@ -68,3 +68,5 @@ export const EnfermedadesPage = ({
     </>
   )
 }
+
+export default EnfermedadesPage

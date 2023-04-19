@@ -1,7 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link }               from 'react-router-dom';
+import DropdawnTiredMenu      from './components/DropdawnTiredMenu';
+
 
 export default function AppTopbar() {
+
   return (
     <div className='layout-topbar '>
       <Link to='/Dashboard' className='layout-topbar-logo'>
@@ -21,31 +23,16 @@ export default function AppTopbar() {
       </button>
       <ul
         className='layout-topbar-menu lg:flex origin-top'
-        // className={
-        //   //classNames("layout-topbar-menu lg:flex origin-top", {
-        //   "layout-topbar-menu-mobile-active"
-        //   //: props.mobileTopbarMenuActive,
-        //   // })
-        // }
       >
         <li>
           <button
             className='p-link layout-topbar-button'
-            //  onClick={props.onMobileSubTopbarMenuClick}
           >
             <i className='pi pi-cog' />
             <span>Settings</span>
           </button>
         </li>
-        <li>
-          <button
-            className='p-link layout-topbar-button'
-            // onClick={handleSeccion}
-          >
-            <i className='pi pi-user' />
-            <span>Profile</span>
-          </button>
-        </li>
+        <DropdawnTiredMenu/>
       </ul>
     </div>
   );

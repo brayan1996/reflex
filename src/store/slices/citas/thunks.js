@@ -1,10 +1,12 @@
-import { setDates, loadingDates, finishLoading } from "./citasSlice";
-import Citas from "../../../apis/Citas";
-import Pacientes from "../../../apis/Pacientes";
-import { deleteElementsDuplicateArrayOfObjects } from "../../../helpers/transformArrays";
+import { setDates, loadingDates, finishLoading }    from "./citasSlice";
+import Citas                                        from "../../../apis/Citas";
+import Pacientes                                    from "../../../apis/Pacientes";
+import { deleteElementsDuplicateArrayOfObjects }    from "../../../helpers/transformArrays";
 
 export const requestDates = (dates) => {
-    return async( dispatch ) => {
+    return async( dispatch, getState ) => {
+        //Regresa el actual árbol de estado de tu aplicación. Es igual al último valor regresado por los reducers del store. 
+        // console.log(getState())
         dispatch( loadingDates() )
         const {data:allCitas} = await Citas.getAppointmentByDate(dates)
         for (const cita of allCitas) {
@@ -42,8 +44,8 @@ export const requestCitasTextSearch = (text, fecha) => async(dispatch, /* getSta
         const citasDePaciente = ( await Promise.all(pacientes.map( async paciente=> ( await Citas.requestTextSearch(paciente.DNI) ).data)) ).flat()
         const citasDelPacienteConNmbre = deleteElementsDuplicateArrayOfObjects(
             [...citasDePaciente, ...allCitas].map( citaPaciente=>{
-            const name = pacientes.find( paciente => paciente.DNI === citaPaciente.doc )?.NOMBRE || ''
-            return({...citaPaciente, cliente:name})
+                const name = pacientes.find( paciente => paciente.DNI === citaPaciente.doc )?.NOMBRE || ''
+                return({...citaPaciente, cliente:name})
             } )
         )
         const citasSearch = citasDelPacienteConNmbre.filter( cita=> cita.date === fecha )
